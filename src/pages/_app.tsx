@@ -3,12 +3,15 @@ import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
+import MenuContext from '../components/context/MenuContextProvider'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <MenuContext>
+        <Component {...pageProps} />
+      </MenuContext>
     </ThemeProvider>
   )
 }

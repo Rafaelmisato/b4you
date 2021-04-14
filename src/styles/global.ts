@@ -11,6 +11,10 @@ export default createGlobalStyle`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 600 16px Poppins, sans-serif;
-    line-height: 10px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    text-decoration: none;
   }
 `

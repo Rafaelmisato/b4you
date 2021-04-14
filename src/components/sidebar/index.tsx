@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 
-import MenuContext from '../context/MenuContext'
+import MenuContext from '../../context/MenuContext'
 
 import { Container, Black, Gold, Rubi, Blue, Profile, Nav } from './styles'
 

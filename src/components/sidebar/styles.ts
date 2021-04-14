@@ -4,7 +4,7 @@ export const Container = styled.aside`
   background: blue;
   padding-left: 20px;
   padding-top: 20px;
-  height: 100vh;
+  min-height: 100vh;
   width: 320px;
   background: #0a152d;
 

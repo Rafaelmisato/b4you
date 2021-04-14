@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import Layout from '../components/layout'
 import Video from '../components/video'
+import InputQr from '../components/inputQrCode'
 
 import { Container, HomeContainer } from '../styles/pages/home'
 
@@ -32,6 +33,8 @@ const Home: React.FC<MenuProps> = () => {
               src="https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4"
               poster={null}
             />
+            <h2>Link para Vendas</h2>
+            <InputQr value="https://b4pay.com.br.checkout/p-Y7Qp" />
           </HomeContainer>
         )}
       </Container>

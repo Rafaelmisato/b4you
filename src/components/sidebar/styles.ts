@@ -1,16 +1,56 @@
 import styled from 'styled-components'
 
-export const Container = styled.aside`
+interface OpenMenu {
+  openMenu: boolean
+}
+
+export const Container = styled.aside<OpenMenu>`
   background: blue;
   padding-left: 20px;
   padding-top: 20px;
   min-height: 100vh;
   width: 320px;
   background: #0a152d;
+  position: relative;
+
+  @media (max-width: 1440px) {
+    width: 270px;
+  }
+
+  @media (max-width: 1023px) {
+    position: fixed;
+    z-index: 2;
+    transform: ${({ openMenu }) =>
+      openMenu ? 'translatex(0px)' : 'translatex(-270px)'};
+    transition: all 0.3s linear;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 
   > img {
     margin: 70px 40px;
   }
+
+  @keyframes dnone {
+    from {
+      display: none;
+    }
+    to {
+      display: block;
+    }
+  }
+`
+
+export const Background = styled.div<OpenMenu>`
+  position: ${({ openMenu }) => (openMenu ? 'fixed' : 'none')};
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1;
 `
 
 export const Gold = styled.span`
@@ -156,6 +196,46 @@ export const Nav = styled.nav`
     svg {
       fill: #37f0d3;
       transition: all 0.5s linear;
+    }
+  }
+`
+
+export const Hamburger = styled.div<OpenMenu>`
+  display: none;
+
+  @media (max-width: 1023px) {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 2;
+
+    > div {
+      width: 100%;
+      height: 8px;
+      background: #fff;
+      border-radius: 4px;
+      transition: all 0.3s linear;
+      position: relative;
+    }
+
+    div:nth-of-type(1) {
+      transform: ${({ openMenu }) =>
+        openMenu ? 'rotate(45deg)' : 'rotate(0)'};
+      top: ${({ openMenu }) => (openMenu ? 'calc(50% - 4px)' : '0')};
+    }
+    div:nth-of-type(2) {
+      background: ${({ openMenu }) => (openMenu ? 'transparent' : '#fff')};
+    }
+    div:nth-of-type(3) {
+      transform: ${({ openMenu }) =>
+        openMenu ? 'rotate(-45deg)' : 'rotate(0)'};
+      bottom: ${({ openMenu }) => (openMenu ? 'calc(50% - 4px)' : '0')};
     }
   }
 `

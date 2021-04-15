@@ -15,5 +15,18 @@ export const Container = styled.div<CardProps>`
     border-radius: 16px;
     padding: 25px 30px;
     overflow-y: auto;
+    overflow-x: hidden;
+
+    @media (max-width: 1440px) {
+      width: 390px;
+    }
+
+    @media (max-width: 1200px) {
+      width: 350px;
+    }
+
+    @media (max-width: 1090px) {
+      width: 320px;
+    }
   }
 `

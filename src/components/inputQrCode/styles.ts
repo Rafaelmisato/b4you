@@ -11,12 +11,17 @@ export const Container = styled.div<Props>`
   display: flex;
   justify-content: space-around;
 
+  @media (max-width: 1440px) {
+    padding: 0;
+  }
+
   input {
     background: #0a152d;
     border-radius: 16px;
     border: none;
     height: 53px;
-    width: 653px;
+    width: 100%;
+    max-width: 653px;
     color: #bfcae1;
     font-size: 18px;
     line-height: 27px;
@@ -33,6 +38,7 @@ export const Container = styled.div<Props>`
     background: #ef4ff0;
     border-radius: 16px;
     cursor: pointer;
+    margin-left: 8px;
 
     &:nth-of-type(1) {
       background: ${({ buttonCopy }) => (buttonCopy ? '#4FF08F;' : ' #ef4ff0')};

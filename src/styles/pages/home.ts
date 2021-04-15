@@ -9,6 +9,15 @@ export const Container = styled.section`
   width: calc(100% - 320px);
   padding: 60px 120px;
 
+  @media (max-width: 1440px) {
+    width: calc(100% - 270px);
+    padding: 60px;
+  }
+
+  @media (max-width: 1023px) {
+    width: 100%;
+  }
+
   > section {
     margin: 0 auto;
     max-width: 880px;
@@ -61,6 +70,10 @@ export const CardsContainer = styled.div`
       color: #ffffff;
       margin-top: 15px;
       margin-left: 25px;
+
+      @media (max-width: 1090px) {
+        line-height: 18px;
+      }
     }
   }
 

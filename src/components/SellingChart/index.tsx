@@ -150,7 +150,7 @@ const SellingChart: React.FC<ChartProps> = ({
             {sellersInfo &&
               sellersInfo.map(seller => {
                 return (
-                  <div>
+                  <div key={seller.name}>
                     <span>{seller.name}</span>
                     <span>
                       <img src="/sellingChart/greenPoint.svg" />

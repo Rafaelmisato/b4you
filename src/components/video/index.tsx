@@ -12,58 +12,58 @@ interface VideoProps {
 /**
  *
  * @param param0
- * To use the component video needs to pass the param
+ *  To use the component video needs to pass the param
  * - src: url of the video
  * - poster: thumb img of the video
  */
 
-const UsePlayerState = videoRef => {
-  const [playerState, setPlayerState] = useState({
-    playing: false,
-    percentage: 0
-  })
-
-  useEffect(() => {
-    playerState.playing ? videoRef.current.play() : videoRef.current.pause()
-  }, [playerState.playing, videoRef])
-
-  const toggleVideoPlay = () => {
-    setPlayerState({
-      ...playerState,
-      playing: !playerState.playing
-    })
-  }
-
-  const handleTime = () => {
-    const currentPercentage =
-      (videoRef.current.currentTime / videoRef.current.duration) * 100
-
-    setPlayerState({
-      ...playerState,
-      percentage: currentPercentage
-    })
-  }
-
-  const handleChangeVideoPercentage = e => {
-    const currentPercentageValue = e.target.value
-    videoRef.current.currentTime =
-      (videoRef.current.duration / 100) * currentPercentageValue
-
-    setPlayerState({
-      ...playerState,
-      percentage: currentPercentageValue
-    })
-  }
-
-  return {
-    playerState,
-    toggleVideoPlay,
-    handleTime,
-    handleChangeVideoPercentage
-  }
-}
-
 const Video: React.FC<VideoProps> = ({ src, poster }) => {
+  const UsePlayerState = videoRef => {
+    const [playerState, setPlayerState] = useState({
+      playing: false,
+      percentage: 0
+    })
+
+    useEffect(() => {
+      playerState.playing ? videoRef.current.play() : videoRef.current.pause()
+    }, [playerState.playing, videoRef])
+
+    const toggleVideoPlay = () => {
+      setPlayerState({
+        ...playerState,
+        playing: !playerState.playing
+      })
+    }
+
+    const handleTime = () => {
+      const currentPercentage =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100
+
+      setPlayerState({
+        ...playerState,
+        percentage: currentPercentage
+      })
+    }
+
+    const handleChangeVideoPercentage = e => {
+      const currentPercentageValue = e.target.value
+      videoRef.current.currentTime =
+        (videoRef.current.duration / 100) * currentPercentageValue
+
+      setPlayerState({
+        ...playerState,
+        percentage: currentPercentageValue
+      })
+    }
+
+    return {
+      playerState,
+      toggleVideoPlay,
+      handleTime,
+      handleChangeVideoPercentage
+    }
+  }
+
   const videoRef = useRef(null)
   const {
     playerState,

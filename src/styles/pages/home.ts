@@ -6,6 +6,8 @@ export const Container = styled.section`
   padding: 60px 120px;
 
   > section {
+    margin: 0 auto;
+    max-width: 880px;
     animation: zoom 0.2s linear;
   }
 
@@ -25,5 +27,9 @@ export const HomeContainer = styled.section`
     color: #fff;
     font-size: 24px;
     line-height: 36px;
+  }
+
+  .sell {
+    margin-top: 80px;
   }
 `

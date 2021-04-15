@@ -1,8 +1,15 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface Props {
+  buttonCopy: boolean
+  buttonQr: boolean
+}
+
+export const Container = styled.div<Props>`
   padding: 0 40px;
   position: relative;
+  display: flex;
+  justify-content: space-around;
 
   input {
     background: #0a152d;
@@ -18,6 +25,25 @@ export const Container = styled.div`
     outline: none;
   }
 
+  button {
+    width: 63px;
+    height: 53px;
+    outline: none;
+    border: none;
+    background: #ef4ff0;
+    border-radius: 16px;
+    cursor: pointer;
+
+    &:nth-of-type(1) {
+      background: ${({ buttonCopy }) => (buttonCopy ? '#4FF08F;' : ' #ef4ff0')};
+      transition: background 0.2s linear;
+    }
+    &:nth-of-type(2) {
+      background: ${({ buttonQr }) => (buttonQr ? '#4FF08F;' : ' #ef4ff0')};
+      transition: background 0.2s linear;
+    }
+  }
+
   span {
     position: absolute;
     bottom: -30px;
@@ -27,7 +53,64 @@ export const Container = styled.div`
     font-size: 12px;
     line-height: 18px;
     text-transform: uppercase;
-    color: #ffffff;
     cursor: pointer;
+    transition: color 0.2s linear;
+    color: ${({ buttonCopy }) => (buttonCopy ? '#4FF08F;' : ' #fff')};
+  }
+`
+
+export const QRCodeContainer = styled.div<Props>`
+  margin: 70px 0 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: zoom 0.3s linear;
+  position: relative;
+
+  img {
+    width: 200px;
+    height: 200px;
+    margin-right: 60px;
+    margin-left: 100px;
+    animation: height 0.3s linear;
+  }
+
+  span {
+    width: 165px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+  }
+
+  button {
+    position: absolute;
+    top: -50px;
+    right: 100px;
+    background: none;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale() (1);
+    }
+  }
+  @keyframes height {
+    from {
+      height: 0;
+    }
+    to {
+      height: 200px;
+    }
   }
 `

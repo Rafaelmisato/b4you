@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 interface CardProps {
   linear: boolean
+  fullWidth: boolean
 }
 
 export const Container = styled.div<CardProps>`
-  width: 49%;
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : '49%')};
 
   @media (max-width: 767px) {
     width: 100%;

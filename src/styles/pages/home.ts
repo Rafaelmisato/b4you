@@ -232,6 +232,230 @@ export const Rubi = styled.span`
 `
 
 export const Blue = styled.span`
-  color: #fff;
+  color: #000;
   background: #3a69cf;
+`
+
+export const Green = styled.span`
+  color: #000;
+  background: #4ff08f;
+`
+
+export const PerfilContainer = styled.section`
+  padding: 60px 0;
+`
+
+export const InfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .edit {
+    padding: 10px;
+    background: none;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: all 0.3s linear;
+    }
+  }
+`
+
+export const InfoContainerLeft = styled.div`
+  width: 49%;
+  padding: 50px 30px 25px 30px;
+  background: #0a152d;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  > img {
+    width: 165px;
+    height: 165px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  > h3 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  div:nth-of-type(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+
+    span {
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 15px;
+      text-transform: uppercase;
+      width: 60px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      height: 22px;
+      width: 22px;
+      margin: 0;
+      margin-left: 10px;
+    }
+  }
+
+  > span:nth-of-type(1) {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    margin-bottom: 15px;
+  }
+
+  hr {
+    width: 100%;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #3a69cf;
+    padding: 0;
+  }
+
+  div:nth-of-type(2) {
+    margin: 25px 0;
+
+    img {
+      width: 31px;
+      height: 31px;
+      object-fit: cover;
+      margin: 0 4px;
+    }
+  }
+
+  span:nth-of-type(3) {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 20px;
+  }
+`
+
+export const InfoContainerRight = styled.div`
+  width: 49%;
+  position: relative;
+
+  div + div {
+    margin-top: 15px;
+  }
+
+  div {
+    height: 270px;
+    position: relative;
+  }
+
+  .card {
+    padding: 15px 20px;
+
+    h3 {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    span {
+      font-size: 13px;
+    }
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      text-align: center;
+    }
+
+    span:nth-of-type(2) {
+      a {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 18px;
+
+        img {
+          margin-top: -2px;
+          margin-right: 5px;
+        }
+
+        & + a {
+          margin-left: 15px;
+        }
+      }
+
+      a:nth-of-type(1) {
+        background: #0075ff;
+
+        &:hover {
+          -webkit-box-shadow: 0px 0px 13px 0px #0075ff;
+          box-shadow: 0px 0px 13px 0px #0075ff;
+          transition: all 0.3s linear;
+        }
+      }
+
+      a:nth-of-type(2) {
+        background: #f55147;
+
+        &:hover {
+          -webkit-box-shadow: 0px 0px 13px 0px #f55147;
+          box-shadow: 0px 0px 13px 0px #f55147;
+          transition: all 0.3s linear;
+        }
+      }
+    }
+  }
+
+  .exp {
+    flex-direction: column;
+    p {
+      margin: 25px 0 10px 0;
+      font-size: 13px;
+      line-height: 19px;
+    }
+
+    > div {
+      height: auto;
+
+      img {
+        width: 31px;
+        height: 31px;
+        object-fit: cover;
+        margin-right: 8px;
+      }
+    }
+  }
 `

@@ -1,10 +1,11 @@
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import Layout from '../components/layout'
 import Video from '../components/video'
 import InputQr from '../components/inputQrCode'
 import SellingChart from '../components/SellingChart'
 import Card from '../components/Card'
+import Modal from '../components/Modal'
 
 import {
   Container,
@@ -14,12 +15,19 @@ import {
   Black,
   Rubi,
   Blue,
-  UserCard
+  Green,
+  UserCard,
+  PerfilContainer,
+  InfoContainer,
+  InfoContainerLeft,
+  InfoContainerRight
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
 import starsNumber from '../utils/starsNumber'
+import badges from '../utils/badges'
 import MenuContext from '../context/MenuContext'
+import { userInfo } from 'os'
 
 interface MenuProps {
   menu: string
@@ -28,22 +36,40 @@ interface MenuProps {
 const Home: React.FC<MenuProps> = () => {
   const { state, setState: setMenuState } = useContext(MenuContext)
 
+  const [photoModal, setPhotoModal] = useState(false)
+
+  // data states
   const [userInformation, setUserInformation] = useState({
     name: 'Pedro Kassaoka',
     plan: 'gold',
     stars: 4,
     balance: '538,75',
     image: '/profileImg.png',
-    country: 'BR',
-    state: 'BA',
-    city: 'Salvador',
-    sales: '7'
+    country: 'Brasil',
+    state: 'DF',
+    city: 'Brasília',
+    sales: '7',
+    badges: 'eagle',
+    company: 'B4YOU',
+    occupation: 'Web Design',
+    achievements: [
+      '/achievements/aquagreen.svg',
+      '/achievements/blue.svg',
+      '/achievements/pink.svg',
+      '/achievements/yellow.svg'
+    ],
+    experiences: [
+      '/experiences/green.svg',
+      '/experiences/red.svg',
+      '/achievements/pink.svg'
+    ],
+    memberSince: '04/2021',
+    about: 'Desenvolvedor em formação, web designer com ênfase em UX e UI.',
+    linkedin: 'https://www.linkedin.com/',
+    instagram: 'https://www.instagram.com/'
   })
-
   const [totalSelling, setTotalSelling] = useState(null)
   const [periodSelling, setperiodSelling] = useState(null)
-  // const [sellingData, setSellingData] = useState([])
-  // const [sellingDate, setSellingDate] = useState([])
   const [sellingData, setSellingData] = useState([1, 2, 3, 4, 5, 6, 7])
   const [sellingDate, setSellingDate] = useState([
     ['11/04'],
@@ -106,13 +132,12 @@ const Home: React.FC<MenuProps> = () => {
       image: '/products/bluecard.svg'
     }
   ])
-
   const [users, setUsers] = useState([
     {
       name: 'Marcon Willian',
       plan: 'black',
       img: '/users/marcon.png',
-      country: 'BR',
+      country: 'Brasil',
       state: 'MT',
       city: 'Mato Grosso',
       sales: '55',
@@ -122,7 +147,7 @@ const Home: React.FC<MenuProps> = () => {
       name: 'Gabriel Ramalho',
       plan: 'gold',
       img: '/users/gabriel.png',
-      country: 'BR',
+      country: 'Brasil',
       state: 'RJ',
       city: 'Rio de Janeiro',
       sales: '35',
@@ -132,7 +157,7 @@ const Home: React.FC<MenuProps> = () => {
       name: 'Angela Viana',
       plan: 'rubi',
       img: '/users/angela.png',
-      country: 'BR',
+      country: 'Brasil',
       state: 'BSB',
       city: 'Brasília',
       sales: '22',
@@ -142,7 +167,7 @@ const Home: React.FC<MenuProps> = () => {
       name: 'Laís Souza',
       plan: 'blue',
       img: '/users/lais.png',
-      country: 'BR',
+      country: 'Brasil',
       state: 'BSB',
       city: 'Brasília',
       sales: '15',
@@ -314,6 +339,140 @@ const Home: React.FC<MenuProps> = () => {
               </Card>
             </CardsContainer>
           </HomeContainer>
+        )}
+
+        {state.menu === 'perfil' && (
+          <>
+            <section>
+              <PerfilContainer>
+                <InfoContainer>
+                  <InfoContainerLeft>
+                    <button
+                      className="edit"
+                      onClick={() => setPhotoModal(!photoModal)}
+                    >
+                      <img src="/pen.svg" />
+                    </button>
+
+                    <img
+                      src={userInformation.image}
+                      alt={userInformation.name}
+                    />
+                    <h3>{userInformation.name}</h3>
+
+                    <div>
+                      {toLowercase(userInformation.badges) === 'lion' && (
+                        <Gold>{userInformation.badges}</Gold>
+                      )}
+                      {toLowercase(userInformation.badges) === 'wolf' && (
+                        <Black>{userInformation.badges}</Black>
+                      )}
+                      {toLowercase(userInformation.badges) === 'rhino' && (
+                        <Blue>{userInformation.badges}</Blue>
+                      )}
+                      {toLowercase(userInformation.badges) === 'eagle' && (
+                        <Rubi>{userInformation.badges}</Rubi>
+                      )}
+                      {badges(userInformation.badges)}
+                    </div>
+
+                    <span>
+                      {userInformation.occupation} | {userInformation.company}
+                    </span>
+
+                    <span>
+                      <img src="/location.svg" />
+                      &nbsp;&nbsp;{userInformation.city},&nbsp;
+                      {userInformation.state},&nbsp;
+                      {userInformation.country}
+                    </span>
+
+                    <div>
+                      {userInformation.achievements.map(
+                        (achievement, index) => {
+                          return (
+                            <React.Fragment key={index}>
+                              <img src={achievement} />
+                            </React.Fragment>
+                          )
+                        }
+                      )}
+                      {userInformation.experiences.map((experience, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            <img src={experience} />
+                          </React.Fragment>
+                        )
+                      })}
+                    </div>
+
+                    <hr />
+
+                    <span>
+                      Membro da B4YOU Starter desde{' '}
+                      {userInformation.memberSince}
+                    </span>
+                  </InfoContainerLeft>
+
+                  <InfoContainerRight>
+                    <Card fullWidth className="card about">
+                      <button className="edit">
+                        <img src="/pen.svg" />
+                      </button>
+                      <h3>Sobre mim</h3>
+
+                      <span>{userInformation.about}</span>
+
+                      <span>
+                        <a href={userInformation.linkedin} target="_blank">
+                          <img src="/linkedinlogo.svg" />
+                          Linkedin
+                        </a>
+                        <a href={userInformation.instagram} target="_blank">
+                          <img src="/instagramlogo.svg" />
+                          Instagram
+                        </a>
+                      </span>
+                    </Card>
+
+                    <Card fullWidth className="card exp">
+                      <button className="edit">
+                        <img src="/pen.svg" />
+                      </button>
+                      <h3>Experiências e Conquistas</h3>
+                      <p>Conquistas</p>
+                      <div>
+                        {userInformation.achievements.map(
+                          (achievement, index) => {
+                            return <img key={index} src={achievement} />
+                          }
+                        )}
+                      </div>
+
+                      <p>Experiências</p>
+                      <div>
+                        {userInformation.experiences.map(
+                          (experience, index) => {
+                            return <img key={index} src={experience} />
+                          }
+                        )}
+                      </div>
+                    </Card>
+                  </InfoContainerRight>
+                </InfoContainer>
+              </PerfilContainer>
+            </section>
+
+            {photoModal && (
+              <Modal title="Editar Foto" onClose={() => setPhotoModal(false)}>
+                <img src={userInformation.image} alt="" />
+
+                <button className="buttonClose">alterar foto</button>
+                <button className="buttonConfirm">confirmar alterações</button>
+                {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
+              </Modal>
+            )}
+          </>
         )}
 
         {state.menu === 'produtos' && (

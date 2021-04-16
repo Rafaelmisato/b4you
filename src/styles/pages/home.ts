@@ -16,6 +16,12 @@ export const Container = styled.section`
 
   @media (max-width: 1023px) {
     width: 100%;
+    margin-top: 85px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 25px 20px;
+    margin-bottom: 85px;
   }
 
   > section {
@@ -40,6 +46,12 @@ export const HomeContainer = styled.section`
     color: #fff;
     font-size: 24px;
     line-height: 36px;
+
+    @media (max-width: 767px) {
+      margin: 20px 0 20px;
+      font-size: 18px;
+      line-height: 27px;
+    }
   }
 
   .sell {
@@ -51,6 +63,10 @@ export const CardsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
   /* products card */
   .products {
     display: flex;
@@ -61,6 +77,11 @@ export const CardsContainer = styled.div`
       height: 74px;
       border-radius: 16px;
       object-fit: cover;
+
+      @media (max-width: 767px) {
+        width: 64px;
+        height: 64px;
+      }
     }
 
     h3 {

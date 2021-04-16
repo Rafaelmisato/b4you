@@ -28,6 +28,19 @@ export const Container = styled.div<Props>`
     font-weight: 600;
     text-align: center;
     outline: none;
+    cursor: pointer;
+
+    @media (max-width: 767px) {
+      height: 35px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 424px) {
+      font-size: 10px;
+    }
   }
 
   button {
@@ -37,8 +50,17 @@ export const Container = styled.div<Props>`
     border: none;
     background: #ef4ff0;
     border-radius: 16px;
-    cursor: pointer;
+    cursor: default;
     margin-left: 8px;
+
+    @media (max-width: 767px) {
+      width: 50px;
+      height: 35px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     &:nth-of-type(1) {
       background: ${({ buttonCopy }) => (buttonCopy ? '#4FF08F;' : ' #ef4ff0')};
@@ -47,6 +69,13 @@ export const Container = styled.div<Props>`
     &:nth-of-type(2) {
       background: ${({ buttonQr }) => (buttonQr ? '#4FF08F;' : ' #ef4ff0')};
       transition: background 0.2s linear;
+    }
+
+    img {
+      @media (max-width: 767px) {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
 
@@ -62,6 +91,16 @@ export const Container = styled.div<Props>`
     cursor: pointer;
     transition: color 0.2s linear;
     color: ${({ buttonCopy }) => (buttonCopy ? '#4FF08F;' : ' #fff')};
+
+    @media (max-width: 767px) {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .clicktocopy {
+      color: transparent;
+    }
   }
 `
 
@@ -79,6 +118,10 @@ export const QRCodeContainer = styled.div<Props>`
     margin-right: 60px;
     margin-left: 100px;
     animation: height 0.3s linear;
+
+    @media (max-width: 767px) {
+      margin: 0;
+    }
   }
 
   span {
@@ -88,12 +131,16 @@ export const QRCodeContainer = styled.div<Props>`
     font-size: 14px;
     line-height: 21px;
     text-transform: uppercase;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 
   button {
     position: absolute;
     top: -50px;
-    right: 100px;
+    right: 30px;
     background: none;
     outline: none;
     border: none;

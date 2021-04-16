@@ -58,7 +58,10 @@ const SellingChart: React.FC<ChartProps> = ({
 
   const options = {
     chart: {
-      height: 350
+      height: 350,
+      toolbar: {
+        show: false
+      }
     },
     fill: {
       type: 'gradient',

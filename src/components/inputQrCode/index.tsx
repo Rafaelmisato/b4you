@@ -73,7 +73,7 @@ const inputQr: React.FC<InputProps> = ({ value }) => {
         <CopyToClipboard text={inputValue}>
           <>
             {!buttonCopy ? (
-              <span onClick={() => setButtonCopy(true)}>
+              <span onClick={() => setButtonCopy(true)} className="clicktocopy">
                 Clique para copiar
               </span>
             ) : (

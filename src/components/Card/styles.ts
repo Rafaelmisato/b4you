@@ -5,8 +5,13 @@ interface CardProps {
 }
 
 export const Container = styled.div<CardProps>`
+  width: 49%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
   > div {
-    width: 429px;
     height: 341px;
     background: ${({ linear }) =>
       linear
@@ -16,17 +21,5 @@ export const Container = styled.div<CardProps>`
     padding: 25px 30px;
     overflow-y: auto;
     overflow-x: hidden;
-
-    @media (max-width: 1440px) {
-      width: 390px;
-    }
-
-    @media (max-width: 1200px) {
-      width: 350px;
-    }
-
-    @media (max-width: 1090px) {
-      width: 320px;
-    }
   }
 `

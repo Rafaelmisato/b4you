@@ -174,6 +174,8 @@ const Home: React.FC<MenuProps> = () => {
     }
   }, [sellingData, sellingDate])
 
+  console.log(state)
+
   return (
     <Layout
       title="Home"

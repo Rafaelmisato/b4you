@@ -17,4 +17,8 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  button {
+    font: 600 16px Poppins,sans-serif;
+  }
 `

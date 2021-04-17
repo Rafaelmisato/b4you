@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback
+} from 'react'
 
 import Layout from '../components/layout'
 import Video from '../components/video'
@@ -6,6 +12,8 @@ import InputQr from '../components/inputQrCode'
 import SellingChart from '../components/SellingChart'
 import Card from '../components/Card'
 import Modal from '../components/Modal'
+import Input from '../components/Input'
+import Flex from '../components/FlexRow'
 
 import {
   Container,
@@ -27,7 +35,11 @@ import toLowercase from '../utils/toLowerCase'
 import starsNumber from '../utils/starsNumber'
 import badges from '../utils/badges'
 import MenuContext from '../context/MenuContext'
-import { userInfo } from 'os'
+
+import { Form } from '@unform/web'
+import { FormHandles } from '@unform/core'
+import { mask } from 'remask'
+import * as Yup from 'yup'
 
 interface MenuProps {
   menu: string
@@ -36,9 +48,20 @@ interface MenuProps {
 const Home: React.FC<MenuProps> = () => {
   const { state, setState: setMenuState } = useContext(MenuContext)
 
-  const [photoModal, setPhotoModal] = useState(false)
+  const formAboutRef = useRef<FormHandles>(null)
 
-  // data states
+  // form states
+  const [cpfValue, setCpfValue] = useState(null)
+  const [birthValue, setBirthValue] = useState(null)
+  const [phoneValue, setPhoneValue] = useState(null)
+  const [cepValue, setCepValue] = useState(null)
+  const [ufValue, setUfValue] = useState(null)
+
+  // modal states
+  const [photoModal, setPhotoModal] = useState(false)
+  const [aboutModal, setAboutModal] = useState(false)
+
+  // api data states
   const [userInformation, setUserInformation] = useState({
     name: 'Pedro Kassaoka',
     plan: 'gold',
@@ -198,6 +221,57 @@ const Home: React.FC<MenuProps> = () => {
       setperiodSelling(period)
     }
   }, [sellingData, sellingDate])
+
+  const handleAboutSubmit = async data => {
+    try {
+      formAboutRef.current?.setErrors({})
+
+      const schema = Yup.object().shape({
+        birth: Yup.string().required('Data obrigatória'),
+        cep: Yup.string().required('CEP Obrigatório'),
+        cidade: Yup.string().required('Cidade Obrigatória'),
+        country: Yup.string().required('País Obrigatória'),
+        cpf: Yup.string().required('CPF Obrigatório'),
+        fullName: Yup.string().required('Nome Obrigatório'),
+        occupation: Yup.string().required('Profissão Obrigatória'),
+        phone: Yup.string().required('Telefone Obrigatório'),
+        uf: Yup.string().required('UF Obrigatório')
+      })
+
+      await schema
+        .validate(data, {
+          abortEarly: false
+        })
+        .then(async () => {
+          console.log(data)
+        })
+        .catch(err => {
+          if (err instanceof Yup.ValidationError) {
+            const errorMessages = {}
+
+            err.inner.forEach(error => {
+              errorMessages[error.path] = error.message
+            })
+            formAboutRef.current.setErrors(errorMessages)
+          } else {
+            console.log(err)
+          }
+        })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleOnlyNumber = useCallback(evt => {
+    const theEvent = evt || window.event
+    let key = theEvent.keyCode || theEvent.which
+    key = String.fromCharCode(key)
+    const regex = /^[0-9.,]+/
+    if (!regex.test(key)) {
+      theEvent.returnValue = false
+      if (theEvent.preventDefault) theEvent.preventDefault()
+    }
+  }, [])
 
   console.log(state)
 
@@ -416,7 +490,10 @@ const Home: React.FC<MenuProps> = () => {
 
                   <InfoContainerRight>
                     <Card fullWidth className="card about">
-                      <button className="edit">
+                      <button
+                        className="edit"
+                        onClick={() => setAboutModal(!aboutModal)}
+                      >
                         <img src="/pen.svg" />
                       </button>
                       <h3>Sobre mim</h3>
@@ -469,6 +546,116 @@ const Home: React.FC<MenuProps> = () => {
 
                 <button className="buttonClose">alterar foto</button>
                 <button className="buttonConfirm">confirmar alterações</button>
+                {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
+              </Modal>
+            )}
+            {aboutModal && (
+              <Modal title="Sobre mim" onClose={() => setAboutModal(false)}>
+                <Form onSubmit={handleAboutSubmit} ref={formAboutRef}>
+                  <Flex>
+                    <Input
+                      name="fullName"
+                      text="Nome Completo"
+                      mask={['']}
+                      onChange={() => null}
+                    />
+                    <Input
+                      name="cpf"
+                      text="CPF"
+                      mask={['999.999.999-99']}
+                      onChange={setCpfValue}
+                      value={
+                        cpfValue && cpfValue !== null
+                          ? mask(cpfValue, ['999.999.999-99'])
+                          : ''
+                      }
+                      onKeyPress={handleOnlyNumber}
+                    />
+                  </Flex>
+                  <Input
+                    name="occupation"
+                    text="Profissão"
+                    mask={['']}
+                    onChange={() => null}
+                  />
+                  <Flex>
+                    <Input
+                      name="birth"
+                      text="Data de Nascimento"
+                      mask={['99/99/9999']}
+                      onChange={setBirthValue}
+                      value={
+                        birthValue && birthValue !== null
+                          ? mask(birthValue, ['99/99/9999'])
+                          : ''
+                      }
+                      onKeyPress={handleOnlyNumber}
+                    />
+                    <Input
+                      name="phone"
+                      text="Telefone"
+                      mask={['(99) 9999-9999', '(99) 9 9999-9999']}
+                      onChange={setPhoneValue}
+                      value={
+                        phoneValue && phoneValue !== null
+                          ? mask(phoneValue, [
+                              '(99) 9999-9999',
+                              '(99) 9 9999-9999'
+                            ])
+                          : ''
+                      }
+                      onKeyPress={handleOnlyNumber}
+                    />
+                  </Flex>
+                  <h3>Endereço</h3>
+                  <Flex>
+                    <Input
+                      name="country"
+                      text="País"
+                      mask={['']}
+                      onChange={() => null}
+                    />
+                    <Input
+                      name="cep"
+                      text="CEP"
+                      mask={['99999-999']}
+                      onChange={setCepValue}
+                      value={
+                        cepValue && cepValue !== null
+                          ? mask(cepValue, ['99999-999'])
+                          : ''
+                      }
+                      onKeyPress={handleOnlyNumber}
+                    />
+                  </Flex>
+                  <Flex>
+                    <Input
+                      name="uf"
+                      text="UF"
+                      mask={['AA']}
+                      onChange={setUfValue}
+                      value={
+                        ufValue && ufValue !== null ? mask(ufValue, ['AA']) : ''
+                      }
+                      width={45}
+                    />
+                    <Input
+                      name="cidade"
+                      text="Cidade"
+                      mask={['']}
+                      onChange={() => null}
+                    />
+                  </Flex>
+                  <button className="buttonConfirm" type="submit">
+                    confirmar alterações
+                  </button>
+                </Form>
+                <button
+                  className="buttonClose"
+                  onClick={() => setAboutModal(false)}
+                >
+                  Cancelar
+                </button>
                 {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
               </Modal>
             )}

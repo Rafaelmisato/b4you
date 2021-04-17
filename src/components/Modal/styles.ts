@@ -25,16 +25,16 @@ export const Container = styled.div`
   .modal {
     background: #0a152d;
     border-radius: 16px;
-    padding: 45px 40px 115px;
+    padding: 20px 40px 115px;
     position: relative;
     min-width: 600px;
 
-    > h3 {
+    h3 {
       font-weight: 600;
       font-size: 24px;
       line-height: 36px;
       color: #ffffff;
-      margin-bottom: 25px;
+      margin: 25px 0;
     }
 
     > img {

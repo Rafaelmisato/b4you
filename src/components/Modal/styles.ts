@@ -37,7 +37,7 @@ export const Container = styled.div`
       margin: 25px 0;
     }
 
-    > img {
+    .perfilImg {
       border-radius: 16px;
       width: 190px;
       height: 190px;
@@ -64,6 +64,15 @@ export const Container = styled.div`
     height: 40px;
     background: rgba(196, 196, 196, 0.1);
     border-radius: 8px;
+
+    &:hover > img {
+      transform: rotate(90deg);
+    }
+
+    img {
+      transform: rotate(0deg);
+      transition: all 0.2s linear;
+    }
   }
 
   .buttonClose {
@@ -75,6 +84,11 @@ export const Container = styled.div`
     border: 2px solid #37f0d3;
     border-radius: 8px;
     color: #37f0d3;
+    transition: all 0.3s linear;
+
+    &:hover {
+      background: rgba(55, 240, 211, 0.2);
+    }
   }
 
   .buttonConfirm {
@@ -86,5 +100,11 @@ export const Container = styled.div`
     border-radius: 8px;
     background: #37f0d3;
     text-transform: uppercase;
+    transition: all 0.3s linear;
+
+    &:hover {
+      -webkit-box-shadow: 0px 0px 10px -1px #37f0d3;
+      box-shadow: 0px 0px 10px -1px #37f0d3;
+    }
   }
 `

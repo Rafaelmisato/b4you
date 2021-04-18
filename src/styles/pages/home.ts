@@ -284,6 +284,35 @@ export const InfoContainerLeft = styled.div`
     height: 165px;
     border-radius: 16px;
     margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover ~ .change-photo {
+      visibility: visible;
+      transition: all 0.3s linear;
+    }
+  }
+
+  > .change-photo {
+    background: rgba(55, 240, 211, 0.7);
+    height: 30px;
+    width: 165px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 187px;
+    border-radius: 0 0 16px 16px;
+    color: #000;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    cursor: pointer;
+
+    &:hover {
+      visibility: visible;
+    }
   }
 
   > h3 {
@@ -294,7 +323,7 @@ export const InfoContainerLeft = styled.div`
     margin-bottom: 20px;
   }
 
-  div:nth-of-type(1) {
+  div:nth-of-type(2) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -337,7 +366,7 @@ export const InfoContainerLeft = styled.div`
     padding: 0;
   }
 
-  div:nth-of-type(2) {
+  div:nth-of-type(3) {
     margin: 25px 0;
 
     img {

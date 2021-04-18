@@ -14,6 +14,7 @@ import Card from '../components/Card'
 import Modal from '../components/Modal'
 import Input from '../components/Input'
 import Flex from '../components/FlexRow'
+import InputRange from '../components/InputRange'
 
 import {
   Container,
@@ -48,7 +49,8 @@ interface MenuProps {
 const Home: React.FC<MenuProps> = () => {
   const { state, setState: setMenuState } = useContext(MenuContext)
 
-  const formAboutRef = useRef<FormHandles>(null)
+  const formPerfilRef = useRef<FormHandles>(null)
+  const zoomRotateRef = useRef<FormHandles>(null)
 
   // form states
   const [cpfValue, setCpfValue] = useState(null)
@@ -59,7 +61,7 @@ const Home: React.FC<MenuProps> = () => {
 
   // modal states
   const [photoModal, setPhotoModal] = useState(false)
-  const [aboutModal, setAboutModal] = useState(false)
+  const [perfilModal, setPerfilModal] = useState(false)
 
   // api data states
   const [userInformation, setUserInformation] = useState({
@@ -224,7 +226,7 @@ const Home: React.FC<MenuProps> = () => {
 
   const handleAboutSubmit = async data => {
     try {
-      formAboutRef.current?.setErrors({})
+      formPerfilRef.current?.setErrors({})
 
       const schema = Yup.object().shape({
         birth: Yup.string().required('Data obrigatória'),
@@ -252,7 +254,7 @@ const Home: React.FC<MenuProps> = () => {
             err.inner.forEach(error => {
               errorMessages[error.path] = error.message
             })
-            formAboutRef.current.setErrors(errorMessages)
+            formPerfilRef.current.setErrors(errorMessages)
           } else {
             console.log(err)
           }
@@ -423,7 +425,7 @@ const Home: React.FC<MenuProps> = () => {
                   <InfoContainerLeft>
                     <button
                       className="edit"
-                      onClick={() => setPhotoModal(!photoModal)}
+                      onClick={() => setPerfilModal(!perfilModal)}
                     >
                       <img src="/pen.svg" />
                     </button>
@@ -431,7 +433,16 @@ const Home: React.FC<MenuProps> = () => {
                     <img
                       src={userInformation.image}
                       alt={userInformation.name}
+                      onClick={() => setPhotoModal(true)}
                     />
+
+                    <div
+                      className="change-photo"
+                      onClick={() => setPhotoModal(true)}
+                    >
+                      Trocar Foto
+                    </div>
+
                     <h3>{userInformation.name}</h3>
 
                     <div>
@@ -492,7 +503,7 @@ const Home: React.FC<MenuProps> = () => {
                     <Card fullWidth className="card about">
                       <button
                         className="edit"
-                        onClick={() => setAboutModal(!aboutModal)}
+                        onClick={() => setPerfilModal(!perfilModal)}
                       >
                         <img src="/pen.svg" />
                       </button>
@@ -542,16 +553,25 @@ const Home: React.FC<MenuProps> = () => {
 
             {photoModal && (
               <Modal title="Editar Foto" onClose={() => setPhotoModal(false)}>
-                <img src={userInformation.image} alt="" />
+                <Flex>
+                  <img
+                    src={userInformation.image}
+                    className="perfilImg"
+                    alt="Foto de perfil"
+                  />
+                  <Form ref={zoomRotateRef} onSubmit={() => null}>
+                    <InputRange name="aaa" km="12" />
+                  </Form>
+                </Flex>
 
                 <button className="buttonClose">alterar foto</button>
                 <button className="buttonConfirm">confirmar alterações</button>
                 {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
               </Modal>
             )}
-            {aboutModal && (
-              <Modal title="Sobre mim" onClose={() => setAboutModal(false)}>
-                <Form onSubmit={handleAboutSubmit} ref={formAboutRef}>
+            {perfilModal && (
+              <Modal title="Meu perfil" onClose={() => setPerfilModal(false)}>
+                <Form onSubmit={handleAboutSubmit} ref={formPerfilRef}>
                   <Flex>
                     <Input
                       name="fullName"
@@ -652,11 +672,10 @@ const Home: React.FC<MenuProps> = () => {
                 </Form>
                 <button
                   className="buttonClose"
-                  onClick={() => setAboutModal(false)}
+                  onClick={() => setPerfilModal(false)}
                 >
                   Cancelar
                 </button>
-                {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
               </Modal>
             )}
           </>

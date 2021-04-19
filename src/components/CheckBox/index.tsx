@@ -11,9 +11,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
  * @param param0
  * needs to pass the params
  * - name: string, input name
- * - mask: if input have mask pass 9 for number A for letter and S for letter or number
- * - text: is the name thats appear on top of input
- * - width?: width size (%)
  */
 
 const Input: React.FC<InputProps> = ({ onChange, name, width, ...rest }) => {

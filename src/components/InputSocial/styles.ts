@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 interface InputProps {
-  width: number
   error: boolean | string
 }
 

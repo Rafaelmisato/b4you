@@ -2,8 +2,12 @@ import React from 'react'
 
 import { Container } from './styles'
 
-const Flex: React.FC = ({ children }) => {
-  return <Container>{children}</Container>
+interface Props {
+  className?: string
+}
+
+const Flex: React.FC<Props> = ({ children, className }) => {
+  return <Container className={className}>{children}</Container>
 }
 
 export default Flex

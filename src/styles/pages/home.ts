@@ -533,3 +533,55 @@ export const InfoContainerRight = styled.div`
     }
   }
 `
+
+export const RankingContainer = styled.div`
+  background: #0a152d;
+  border-radius: 16px;
+  padding: 30px;
+
+  > h3 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #ffffff;
+    margin-bottom: 35px;
+  }
+
+  .ranking-wraper {
+    justify-content: space-between;
+  }
+
+  .ranking-products {
+    div + div {
+      margin-left: 0;
+    }
+  }
+
+  .ranking-product-single {
+    margin-bottom: 20px;
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 10px;
+
+      span:nth-of-type(1) {
+        font-weight: 600;
+        font-size: 16px;
+        color: #fff;
+      }
+
+      span:nth-of-type(2) {
+        font-weight: 600;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+  }
+`

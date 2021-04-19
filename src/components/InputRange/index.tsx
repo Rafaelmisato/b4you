@@ -16,6 +16,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onMouseUp?: () => void
 }
 
+/**
+ *
+ * @param param0
+ * needs to pass the params:
+ * - name: string name of the input
+ * - title: title displayed
+ * - max: max size of input
+ */
+
 const InputRange: React.FC<InputProps> = ({
   name,
   title,

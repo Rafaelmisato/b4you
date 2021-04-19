@@ -8,7 +8,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   mask: string[]
   text: string
-  width?: number
 }
 
 /**
@@ -18,7 +17,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
  * - name: string, input name
  * - mask: if input have mask pass 9 for number A for letter and S for letter or number
  * - text: is the name thats appear on top of input
- * - width?: width size (%)
+
  */
 
 const Input: React.FC<InputProps> = ({
@@ -26,7 +25,7 @@ const Input: React.FC<InputProps> = ({
   onChange,
   name,
   text,
-  width,
+
   ...rest
 }) => {
   const inputRef = useRef(null)
@@ -47,14 +46,13 @@ const Input: React.FC<InputProps> = ({
   }
 
   return (
-    <Container width={width} error={error}>
+    <Container error={error}>
       <span>
         {text === 'Linkedin' && <img src="/linkedinlogogreen.svg" />}
         {text === 'Instagram' && <img src="/instagramlogogreen.svg" />}
         {text}
       </span>
       <input
-        width={width}
         name={name}
         defaultValue={defaultValue}
         ref={inputRef}

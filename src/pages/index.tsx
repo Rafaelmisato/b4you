@@ -17,6 +17,7 @@ import Flex from '../components/FlexRow'
 import InputRange from '../components/InputRange'
 import InputSocial from '../components/InputSocial'
 import CheckBox from '../components/CheckBox'
+import RankingChart from '../components/RankingChart'
 
 import {
   Container,
@@ -26,12 +27,12 @@ import {
   Black,
   Rubi,
   Blue,
-  Green,
   UserCard,
   PerfilContainer,
   InfoContainer,
   InfoContainerLeft,
-  InfoContainerRight
+  InfoContainerRight,
+  RankingContainer
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -183,15 +184,18 @@ const Home: React.FC<MenuProps> = () => {
   const [products, setProducts] = useState([
     {
       name: 'Profissão blogueira',
-      image: '/products/pinkcard.svg'
+      image: '/products/pinkcard.svg',
+      quantity: 4
     },
     {
       name: 'Beauty Candy',
-      image: '/products/yellowcard.svg'
+      image: '/products/yellowcard.svg',
+      quantity: 8
     },
     {
       name: 'Meu Sono Brasil',
-      image: '/products/bluecard.svg'
+      image: '/products/bluecard.svg',
+      quantity: 25
     }
   ])
   const [users, setUsers] = useState([
@@ -659,6 +663,34 @@ const Home: React.FC<MenuProps> = () => {
                   </InfoContainerRight>
                 </InfoContainer>
               </PerfilContainer>
+              <RankingContainer>
+                <h3>Ranking dos produtos</h3>
+
+                <Flex className="ranking-wraper">
+                  <div className="ranking-products">
+                    {products.map((product, index) => {
+                      return (
+                        <Flex key={index} className="ranking-product-single">
+                          <img src={product.image} alt="" />
+                          <div>
+                            <span>{product.name}</span>
+                            <span>{product.quantity} Vendas</span>
+                          </div>
+                        </Flex>
+                      )
+                    })}
+                  </div>
+
+                  <RankingChart
+                    sellCount={totalSelling}
+                    period={periodSelling}
+                    data={sellingData}
+                    date={sellingDate}
+                    haveSelling={haveSelling}
+                    sellerInfo={sellersInfo}
+                  />
+                </Flex>
+              </RankingContainer>
             </section>
 
             {photoModal && (
@@ -895,8 +927,6 @@ const Home: React.FC<MenuProps> = () => {
                 >
                   Cancelar
                 </button>
-                {/* fazer map no expriencies e no coquistas, os estados ja estao criados com os status */}
-                {/* colocar switch buutton e passae true or false - olhar no autosim */}
               </Modal>
             )}
           </>

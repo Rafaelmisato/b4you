@@ -43,6 +43,8 @@ const SellingChart: React.FC<ChartProps> = ({
     ssr: false
   })
 
+  // copiar os states do grafico ja pronto, pra ser rapido, fazer tudo estatico pra terminar logo
+
   const series = [
     {
       name: 'series1',
@@ -54,9 +56,9 @@ const SellingChart: React.FC<ChartProps> = ({
     }
   ]
 
+  // ajustar chart e responsivo
   const options = {
     chart: {
-      height: '150px',
       toolbar: {
         show: false
       }
@@ -86,9 +88,47 @@ const SellingChart: React.FC<ChartProps> = ({
         }
       }
     },
+    // grid: {
+    //   show: true,
+    //   borderColor: '#244282'
+    // },
     grid: {
       show: true,
-      borderColor: '#244282'
+      borderColor: '#fff',
+      strokeDashArray: 0,
+      position: 'back',
+      xaxis: {
+        lines: {
+          show: true
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true
+        }
+      },
+      row: {
+        colors: undefined,
+        opacity: 0.5
+      },
+      column: {
+        colors: undefined,
+        opacity: 0.5
+      },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 10,
+        left: 10
+      }
+    },
+    stroke: {
+      show: true,
+      curve: 'smooth',
+      lineCap: 'butt',
+      colors: undefined,
+      width: 2,
+      dashArray: 0
     }
   }
 
@@ -98,7 +138,7 @@ const SellingChart: React.FC<ChartProps> = ({
         options={options}
         series={series}
         type="area"
-        height={350}
+        height={250}
       />
     </Container>
   )

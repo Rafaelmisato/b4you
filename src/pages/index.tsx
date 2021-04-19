@@ -16,6 +16,7 @@ import Input from '../components/Input'
 import Flex from '../components/FlexRow'
 import InputRange from '../components/InputRange'
 import InputSocial from '../components/InputSocial'
+import CheckBox from '../components/CheckBox'
 
 import {
   Container,
@@ -54,6 +55,7 @@ const Home: React.FC<MenuProps> = () => {
   const formPerfilRef = useRef<FormHandles>(null)
   const zoomRotateRef = useRef<FormHandles>(null)
   const formAboutRef = useRef<FormHandles>(null)
+  const formExperienceRef = useRef<FormHandles>(null)
 
   // change photo states
   const [zoom, setZoom] = useState(0)
@@ -61,7 +63,6 @@ const Home: React.FC<MenuProps> = () => {
   const [rotate, setRotate] = useState(0)
   const [rotateScale, setRotateScale] = useState(0)
   const [changeImg, setChangeImg] = useState(null)
-  // armazenar o file em um state e fazer a condicional, se tiver imagem no esstado mostrar na img dentro do modal
 
   // form states
   const [cpfValue, setCpfValue] = useState(null)
@@ -74,6 +75,7 @@ const Home: React.FC<MenuProps> = () => {
   const [photoModal, setPhotoModal] = useState(false)
   const [perfilModal, setPerfilModal] = useState(false)
   const [aboutModal, setAboutModal] = useState(false)
+  const [experienceModal, setExperienceModal] = useState(false)
 
   // api data states
   const [userInformation, setUserInformation] = useState({
@@ -89,16 +91,39 @@ const Home: React.FC<MenuProps> = () => {
     badges: 'eagle',
     company: 'B4YOU',
     occupation: 'Web Design',
-    achievements: [
-      '/achievements/aquagreen.svg',
-      '/achievements/blue.svg',
-      '/achievements/pink.svg',
-      '/achievements/yellow.svg'
-    ],
     experiences: [
-      '/experiences/green.svg',
-      '/experiences/red.svg',
-      '/achievements/pink.svg'
+      {
+        image: '/achiev-exp/blue.svg',
+        name: 'Facebook Ads',
+        description:
+          'Esta é a conquista dedicada a agências certificadas pelo curso Hotmart Partnership Program'
+      },
+      {
+        image: '/achiev-exp/red.svg',
+        name: 'Google Ads',
+        description:
+          'Esta é a conquista dedicada a agências certificadas pelo curso Hotmart Partnership Program'
+      },
+      {
+        image: '/achiev-exp/green.svg',
+        name: 'WhatsApp',
+        description:
+          'Esta é a conquista dedicada a agências certificadas pelo curso Hotmart Partnership Program'
+      }
+    ],
+    achievements: [
+      {
+        image: '/achiev-exp/pink.svg',
+        name: 'Primeira Venda em 24 horas',
+        description:
+          'Esta é a conquista dedicada a agências certificadas pelo curso Hotmart Partnership Program'
+      },
+      {
+        image: '/achiev-exp/aquagreen.svg',
+        name: '10 Vendas em uma semana',
+        description:
+          'Esta é a conquista dedicada a agências certificadas pelo curso Hotmart Partnership Program'
+      }
     ],
     memberSince: '04/2021',
     about: 'Desenvolvedor em formação, web designer com ênfase em UX e UI.',
@@ -307,6 +332,10 @@ const Home: React.FC<MenuProps> = () => {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const handleExperienceSubmit = async data => {
+    console.log(data)
   }
 
   const handleZoom = e => {
@@ -555,7 +584,7 @@ const Home: React.FC<MenuProps> = () => {
                         (achievement, index) => {
                           return (
                             <React.Fragment key={index}>
-                              <img src={achievement} />
+                              <img src={achievement.image} />
                             </React.Fragment>
                           )
                         }
@@ -563,7 +592,7 @@ const Home: React.FC<MenuProps> = () => {
                       {userInformation.experiences.map((experience, index) => {
                         return (
                           <React.Fragment key={index}>
-                            <img src={experience} />
+                            <img src={experience.image} />
                           </React.Fragment>
                         )
                       })}
@@ -602,7 +631,10 @@ const Home: React.FC<MenuProps> = () => {
                     </Card>
 
                     <Card fullWidth className="card exp">
-                      <button className="edit">
+                      <button
+                        className="edit"
+                        onClick={() => setExperienceModal(!experienceModal)}
+                      >
                         <img src="/pen.svg" />
                       </button>
                       <h3>Experiências e Conquistas</h3>
@@ -610,7 +642,7 @@ const Home: React.FC<MenuProps> = () => {
                       <div>
                         {userInformation.achievements.map(
                           (achievement, index) => {
-                            return <img key={index} src={achievement} />
+                            return <img key={index} src={achievement.image} />
                           }
                         )}
                       </div>
@@ -619,7 +651,7 @@ const Home: React.FC<MenuProps> = () => {
                       <div>
                         {userInformation.experiences.map(
                           (experience, index) => {
-                            return <img key={index} src={experience} />
+                            return <img key={index} src={experience.image} />
                           }
                         )}
                       </div>
@@ -818,6 +850,53 @@ const Home: React.FC<MenuProps> = () => {
                 >
                   Cancelar
                 </button>
+              </Modal>
+            )}
+            {experienceModal && (
+              <Modal
+                title="Experiências"
+                onClose={() => setExperienceModal(false)}
+              >
+                <Form onSubmit={handleExperienceSubmit} ref={formExperienceRef}>
+                  {userInformation.experiences.map((experience, index) => {
+                    return (
+                      <div className="experiences-checkbox" key={index}>
+                        <img src={experience.image} />
+                        <div>
+                          <span>{experience.name}</span>
+                          <p>{experience.description}</p>
+                        </div>
+                        <CheckBox name={experience.name} />
+                      </div>
+                    )
+                  })}
+
+                  <h3 className="achievements-title">Conquistas</h3>
+                  {userInformation.achievements.map((achievement, index) => {
+                    return (
+                      <div className="experiences-checkbox" key={index}>
+                        <img src={achievement.image} />
+                        <div>
+                          <span>{achievement.name}</span>
+                          <p>{achievement.description}</p>
+                        </div>
+                        <CheckBox name={achievement.name} />
+                      </div>
+                    )
+                  })}
+                  <button className="buttonConfirm" type="submit">
+                    confirmar alterações
+                  </button>
+                </Form>
+                <div className="margin-bottom" />
+                <button
+                  className="buttonClose"
+                  onClick={() => setExperienceModal(false)}
+                >
+                  Cancelar
+                </button>
+                {/* fazer map no expriencies e no coquistas, os estados ja estao criados com os status */}
+                {/* colocar switch buutton e passae true or false - olhar no autosim */}
               </Modal>
             )}
           </>

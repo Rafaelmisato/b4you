@@ -181,4 +181,60 @@ export const Container = styled.div<Props>`
     border-radius: 8px;
     margin: 20px 0;
   }
+
+  .achievements-title {
+    padding-top: 30px;
+  }
+
+  .experiences-checkbox {
+    display: flex;
+    position: relative;
+    margin: 30px 0;
+
+    @media (max-width: 767px) {
+      margin-bottom: 50px;
+    }
+
+    > img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    > div {
+      margin-left: 15px;
+
+      > span {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #ffffff;
+      }
+
+      > p {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 15px;
+        color: #ffffff;
+      }
+    }
+
+    > label {
+      position: absolute;
+      bottom: -20px;
+      left: 65px;
+
+      @media (max-width: 767px) {
+        bottom: -30px;
+      }
+    }
+  }
+
+  .margin-bottom {
+    height: 60px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
 `

@@ -35,6 +35,7 @@ import {
 import toLowercase from '../utils/toLowerCase'
 import starsNumber from '../utils/starsNumber'
 import badges from '../utils/badges'
+import getBase64 from '../utils/getBase64'
 import MenuContext from '../context/MenuContext'
 
 import { Form } from '@unform/web'
@@ -51,6 +52,14 @@ const Home: React.FC<MenuProps> = () => {
 
   const formPerfilRef = useRef<FormHandles>(null)
   const zoomRotateRef = useRef<FormHandles>(null)
+
+  // change photo states
+  const [zoom, setZoom] = useState(0)
+  const [zoomScale, setZoomScale] = useState(0)
+  const [rotate, setRotate] = useState(0)
+  const [rotateScale, setRotateScale] = useState(0)
+  const [changeImg, setChangeImg] = useState(null)
+  // armazenar o file em um state e fazer a condicional, se tiver imagem no esstado mostrar na img dentro do modal
 
   // form states
   const [cpfValue, setCpfValue] = useState(null)
@@ -262,6 +271,39 @@ const Home: React.FC<MenuProps> = () => {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const handleZoom = e => {
+    const number = e.target.value
+    setZoom(number)
+
+    const scale = number / 100 + 1
+
+    setZoomScale(scale)
+  }
+
+  const handleRotate = e => {
+    const number = e.target.value
+    setRotate(number)
+
+    const scale = number * 3.6
+
+    setRotateScale(scale)
+  }
+
+  const base64 = useCallback(async file => {
+    const res = await getBase64(file)
+
+    return res
+  }, [])
+
+  const handleChangePhoto = async e => {
+    const image = e.target.files[0]
+
+    const image64 = await base64(image)
+
+    setChangeImg(image64)
+    console.log(image64)
   }
 
   const handleOnlyNumber = useCallback(evt => {
@@ -552,21 +594,51 @@ const Home: React.FC<MenuProps> = () => {
             </section>
 
             {photoModal && (
-              <Modal title="Editar Foto" onClose={() => setPhotoModal(false)}>
+              <Modal
+                title="Editar Foto"
+                onClose={() => setPhotoModal(false)}
+                zoom={zoomScale}
+                rotate={rotateScale}
+              >
                 <Flex>
-                  <img
-                    src={userInformation.image}
-                    className="perfilImg"
-                    alt="Foto de perfil"
-                  />
-                  <Form ref={zoomRotateRef} onSubmit={() => null}>
-                    <InputRange name="aaa" km="12" />
+                  <div className="imgContainer">
+                    <img
+                      src={
+                        changeImg === null ? userInformation.image : changeImg
+                      }
+                      className="perfilImg"
+                      alt="Foto de perfil"
+                    />
+                  </div>
+                  <Form
+                    ref={zoomRotateRef}
+                    onSubmit={() => null}
+                    className="input-range"
+                  >
+                    <InputRange
+                      name="zoom"
+                      title="Zoom"
+                      onChange={e => handleZoom(e)}
+                      value={zoom}
+                    />
+                    <InputRange
+                      name="rotate"
+                      title="Rotacionar"
+                      onChange={e => handleRotate(e)}
+                      value={rotate}
+                    />
                   </Form>
                 </Flex>
 
-                <button className="buttonClose">alterar foto</button>
+                <label className="buttonClose" htmlFor="file">
+                  Alterar foto
+                  <input
+                    id="file"
+                    type="file"
+                    onChange={e => handleChangePhoto(e)}
+                  />
+                </label>
                 <button className="buttonConfirm">confirmar alterações</button>
-                {/* usar essas classes nos botoes do modal, ja estao padronizadas */}
               </Modal>
             )}
             {perfilModal && (

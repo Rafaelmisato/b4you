@@ -7,19 +7,19 @@ import React, {
 } from 'react'
 import { useField } from '@unform/core'
 
-import { Container, Header, Content, Km } from './styles'
+import { Container, Header, Content } from './styles'
+import { title } from 'process'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   width?: number
-  km: string
   onMouseUp?: () => void
 }
 
 const InputRange: React.FC<InputProps> = ({
   name,
-  width,
-  km,
+  title,
+  max,
   ...rest
 }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -52,10 +52,9 @@ const InputRange: React.FC<InputProps> = ({
   }, [fieldName, registerField])
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused} width={width} km={km}>
+    <Container isFilled={isFilled} isFocused={isFocused}>
       <Header>
-        <span>0km</span>
-        <span>300000km</span>
+        <span>{title}</span>
       </Header>
       <Content>
         <input
@@ -65,14 +64,10 @@ const InputRange: React.FC<InputProps> = ({
           ref={inputRef}
           type="range"
           min="0"
-          max="300000"
-          value={km}
+          max="100"
           {...rest}
         />
       </Content>
-      <Km>
-        <strong>{km}</strong> km
-      </Km>
     </Container>
   )
 }

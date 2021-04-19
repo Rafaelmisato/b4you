@@ -4,48 +4,112 @@ interface ContainerProps {
   isFocused: boolean
   isFilled: boolean
   width?: number
-  km: string
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: ${props => (props.width ? props.width + 'px' : 100 + '%')};
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 0 !important;
+  margin-bottom: 15px;
 `
 
 export const Header = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 10px 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
 `
 
 export const Content = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
+  margin: 0 !important;
 
   input {
-    flex: 1;
-    background: transparent;
+    height: 19px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
     outline: none;
-    border: none;
-    font-size: 16px;
-    color: #0e1758;
-    &::placeholder {
-      font-size: 16px;
-      color: #0e1758;
-    }
+    background: transparent;
   }
-  & + div {
-    margin-left: 8px;
+  input::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animation: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #3071a9;
+    border-radius: 0px;
+    border: 0px solid #2e384f;
   }
-`
-
-export const Km = styled.div`
-  width: 100%;
-  margin-top: 10px;
+  input::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 13px;
+    width: 13px;
+    border-radius: 50px;
+    background: #37f0d3;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+  }
+  input::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animation: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #3071a9;
+    border-radius: 0px;
+    border: 0px solid #2e384f;
+  }
+  input::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 13px;
+    width: 13px;
+    border-radius: 50px;
+    background: #37f0d3;
+    cursor: pointer;
+  }
+  input::-ms-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animation: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input::-ms-fill-lower {
+    background: #3071a9;
+    border: 0px solid #2e384f;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  input::-ms-fill-upper {
+    background: #3071a9;
+    border: 0px solid #2e384f;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  input::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 13px;
+    width: 13px;
+    border-radius: 50px;
+    background: #37f0d3;
+    cursor: pointer;
+  }
+  input:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input:focus::-ms-fill-upper {
+    background: #3071a9;
+  }
 `

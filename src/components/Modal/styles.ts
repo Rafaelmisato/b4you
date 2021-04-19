@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface Props {
+  zoom: number
+  rotate: number
+}
+
+export const Container = styled.div<Props>`
   position: fixed;
   top: 0;
   left: 0;
@@ -37,10 +42,21 @@ export const Container = styled.div`
       margin: 25px 0;
     }
 
-    .perfilImg {
-      border-radius: 16px;
-      width: 190px;
+    .imgContainer {
+      width: 100%;
+      max-width: 190px;
       height: 190px;
+      overflow: hidden;
+      border-radius: 16px;
+
+      .perfilImg {
+        border-radius: 16px;
+        width: 190px;
+        height: 190px;
+        object-fit: cover;
+        transform: ${({ zoom }) => zoom && `scale(${zoom})`};
+        transform: ${({ rotate }) => rotate && `rotate(${rotate}deg)`};
+      }
     }
   }
 
@@ -85,9 +101,17 @@ export const Container = styled.div`
     border-radius: 8px;
     color: #37f0d3;
     transition: all 0.3s linear;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background: rgba(55, 240, 211, 0.2);
+    }
+
+    input {
+      display: none;
     }
   }
 
@@ -106,5 +130,10 @@ export const Container = styled.div`
       -webkit-box-shadow: 0px 0px 10px -1px #37f0d3;
       box-shadow: 0px 0px 10px -1px #37f0d3;
     }
+  }
+
+  .input-range {
+    width: 100%;
+    padding: 0 20px;
   }
 `

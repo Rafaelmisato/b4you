@@ -251,6 +251,10 @@ export const InfoContainer = styled.div`
   justify-content: space-between;
   position: relative;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
   .edit {
     padding: 10px;
     background: none;
@@ -278,6 +282,11 @@ export const InfoContainerLeft = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 
   > img {
     width: 165px;
@@ -389,6 +398,10 @@ export const InfoContainerRight = styled.div`
   width: 49%;
   position: relative;
 
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
   div + div {
     margin-top: 15px;
   }
@@ -412,6 +425,11 @@ export const InfoContainerRight = styled.div`
 
     span {
       font-size: 13px;
+
+      @media (max-width: 767px) {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
@@ -470,14 +488,41 @@ export const InfoContainerRight = styled.div`
 
   .exp {
     flex-direction: column;
+
+    @media (max-width: 1180px) {
+      height: 326px;
+    }
+    @media (max-width: 1023px) {
+      height: 270px;
+    }
+    @media (max-width: 837px) {
+      height: 290px;
+    }
+    @media (max-width: 799px) {
+      height: 326px;
+    }
+    @media (max-width: 767px) {
+      height: 270px;
+    }
+
     p {
       margin: 25px 0 10px 0;
       font-size: 13px;
       line-height: 19px;
+
+      @media (max-width: 767px) {
+        text-align: center;
+      }
     }
 
     > div {
       height: auto;
+
+      @media (max-width: 767px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       img {
         width: 31px;

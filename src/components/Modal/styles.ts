@@ -32,7 +32,19 @@ export const Container = styled.div<Props>`
     border-radius: 16px;
     padding: 20px 40px 115px;
     position: relative;
-    min-width: 600px;
+    min-width: 880px;
+
+    @media (max-width: 1023px) {
+      min-width: 660px;
+    }
+
+    @media (max-width: 767px) {
+      width: 90%;
+      min-width: 96%;
+      height: 80vh;
+      overflow: auto;
+      padding-bottom: 50px;
+    }
 
     h3 {
       font-weight: 600;
@@ -49,6 +61,12 @@ export const Container = styled.div<Props>`
       overflow: hidden;
       border-radius: 16px;
 
+      @media (max-width: 767px) {
+        max-width: 300px;
+        height: 300px;
+        margin: 60px auto;
+      }
+
       .perfilImg {
         border-radius: 16px;
         width: 190px;
@@ -56,6 +74,11 @@ export const Container = styled.div<Props>`
         object-fit: cover;
         transform: ${({ zoom }) => zoom && `scale(${zoom})`};
         transform: ${({ rotate }) => rotate && `rotate(${rotate}deg)`};
+
+        @media (max-width: 767px) {
+          width: 300px;
+          height: 300px;
+        }
       }
     }
   }
@@ -106,6 +129,13 @@ export const Container = styled.div<Props>`
     align-items: center;
     justify-content: center;
 
+    @media (max-width: 767px) {
+      position: relative;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     &:hover {
       background: rgba(55, 240, 211, 0.2);
     }
@@ -126,6 +156,13 @@ export const Container = styled.div<Props>`
     text-transform: uppercase;
     transition: all 0.3s linear;
 
+    @media (max-width: 767px) {
+      position: relative;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     &:hover {
       -webkit-box-shadow: 0px 0px 10px -1px #37f0d3;
       box-shadow: 0px 0px 10px -1px #37f0d3;
@@ -135,5 +172,13 @@ export const Container = styled.div<Props>`
   .input-range {
     width: 100%;
     padding: 0 20px;
+  }
+
+  .aboutInfo {
+    width: 100%;
+    height: 170px;
+    background: #2e384f;
+    border-radius: 8px;
+    margin: 20px 0;
   }
 `

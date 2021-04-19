@@ -15,6 +15,7 @@ import Modal from '../components/Modal'
 import Input from '../components/Input'
 import Flex from '../components/FlexRow'
 import InputRange from '../components/InputRange'
+import InputSocial from '../components/InputSocial'
 
 import {
   Container,
@@ -52,6 +53,7 @@ const Home: React.FC<MenuProps> = () => {
 
   const formPerfilRef = useRef<FormHandles>(null)
   const zoomRotateRef = useRef<FormHandles>(null)
+  const formAboutRef = useRef<FormHandles>(null)
 
   // change photo states
   const [zoom, setZoom] = useState(0)
@@ -71,6 +73,7 @@ const Home: React.FC<MenuProps> = () => {
   // modal states
   const [photoModal, setPhotoModal] = useState(false)
   const [perfilModal, setPerfilModal] = useState(false)
+  const [aboutModal, setAboutModal] = useState(false)
 
   // api data states
   const [userInformation, setUserInformation] = useState({
@@ -233,7 +236,7 @@ const Home: React.FC<MenuProps> = () => {
     }
   }, [sellingData, sellingDate])
 
-  const handleAboutSubmit = async data => {
+  const handlePerfilSubmit = async data => {
     try {
       formPerfilRef.current?.setErrors({})
 
@@ -241,7 +244,7 @@ const Home: React.FC<MenuProps> = () => {
         birth: Yup.string().required('Data obrigatória'),
         cep: Yup.string().required('CEP Obrigatório'),
         cidade: Yup.string().required('Cidade Obrigatória'),
-        country: Yup.string().required('País Obrigatória'),
+        country: Yup.string().required('País Obrigatório'),
         cpf: Yup.string().required('CPF Obrigatório'),
         fullName: Yup.string().required('Nome Obrigatório'),
         occupation: Yup.string().required('Profissão Obrigatória'),
@@ -264,6 +267,39 @@ const Home: React.FC<MenuProps> = () => {
               errorMessages[error.path] = error.message
             })
             formPerfilRef.current.setErrors(errorMessages)
+          } else {
+            console.log(err)
+          }
+        })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleAboutSubmit = async data => {
+    try {
+      formAboutRef.current?.setErrors({})
+
+      const schema = Yup.object().shape({
+        instagram: Yup.string().required('instagram obrigatório'),
+        linkedin: Yup.string().required('Linkedin obrigatório')
+      })
+
+      await schema
+        .validate(data, {
+          abortEarly: false
+        })
+        .then(async () => {
+          console.log(data)
+        })
+        .catch(err => {
+          if (err instanceof Yup.ValidationError) {
+            const errorMessages = {}
+
+            err.inner.forEach(error => {
+              errorMessages[error.path] = error.message
+            })
+            formAboutRef.current.setErrors(errorMessages)
           } else {
             console.log(err)
           }
@@ -545,7 +581,7 @@ const Home: React.FC<MenuProps> = () => {
                     <Card fullWidth className="card about">
                       <button
                         className="edit"
-                        onClick={() => setPerfilModal(!perfilModal)}
+                        onClick={() => setAboutModal(!aboutModal)}
                       >
                         <img src="/pen.svg" />
                       </button>
@@ -627,6 +663,9 @@ const Home: React.FC<MenuProps> = () => {
                       onChange={e => handleRotate(e)}
                       value={rotate}
                     />
+                    <button className="buttonConfirm">
+                      confirmar alterações
+                    </button>
                   </Form>
                 </Flex>
 
@@ -638,12 +677,11 @@ const Home: React.FC<MenuProps> = () => {
                     onChange={e => handleChangePhoto(e)}
                   />
                 </label>
-                <button className="buttonConfirm">confirmar alterações</button>
               </Modal>
             )}
             {perfilModal && (
               <Modal title="Meu perfil" onClose={() => setPerfilModal(false)}>
-                <Form onSubmit={handleAboutSubmit} ref={formPerfilRef}>
+                <Form onSubmit={handlePerfilSubmit} ref={formPerfilRef}>
                   <Flex>
                     <Input
                       name="fullName"
@@ -745,6 +783,38 @@ const Home: React.FC<MenuProps> = () => {
                 <button
                   className="buttonClose"
                   onClick={() => setPerfilModal(false)}
+                >
+                  Cancelar
+                </button>
+              </Modal>
+            )}
+            {aboutModal && (
+              <Modal title="Sobre mim" onClose={() => setAboutModal(false)}>
+                Sobre
+                <div className="aboutInfo" />
+                <Form onSubmit={handleAboutSubmit} ref={formAboutRef}>
+                  <InputSocial
+                    name="linkedin"
+                    text="Linkedin"
+                    placeholder="Insira a URL"
+                    mask={['']}
+                    onChange={() => null}
+                  />
+                  <InputSocial
+                    name="instagram"
+                    text="Instagram"
+                    placeholder="Insira a URL"
+                    mask={['']}
+                    onChange={() => null}
+                  />
+
+                  <button className="buttonConfirm" type="submit">
+                    confirmar alterações
+                  </button>
+                </Form>
+                <button
+                  className="buttonClose"
+                  onClick={() => setAboutModal(false)}
                 >
                   Cancelar
                 </button>

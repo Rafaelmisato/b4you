@@ -13,6 +13,10 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   margin-left: 0 !important;
   margin-bottom: 15px;
+
+  @media (max-width: 767px) {
+    margin: 30px 0;
+  }
 `
 
 export const Header = styled.div`

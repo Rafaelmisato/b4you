@@ -624,3 +624,34 @@ export const TeamContainer = styled.div`
     margin-bottom: 45px;
   }
 `
+
+export const Products = styled.section`
+  h1 {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+    color: #ffffff;
+    margin: 45px 0;
+
+    img {
+      margin-right: 20px;
+    }
+  }
+
+  > .my-products {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    animation: zoom 0.3s linear;
+
+    @keyframes zoom {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+  }
+`

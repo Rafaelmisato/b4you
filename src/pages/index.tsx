@@ -19,6 +19,8 @@ import InputSocial from '../components/InputSocial'
 import CheckBox from '../components/CheckBox'
 import RankingChart from '../components/RankingChart'
 import Team from '../components/Team'
+import TopMenu from '../components/TopMenu'
+import ProductsList from '../components/ProductsList'
 
 import {
   Container,
@@ -34,7 +36,8 @@ import {
   InfoContainerLeft,
   InfoContainerRight,
   RankingContainer,
-  TeamContainer
+  TeamContainer,
+  Products
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -269,8 +272,78 @@ const Home: React.FC<MenuProps> = () => {
     { name: 'green', img: '/team/green.svg' },
     { name: 'green', img: '/team/green.svg' },
     { name: 'green', img: '/team/green.svg' },
-    { name: 'green', img: '/team/green.svg' },
+    { name: 'green', img: '/team/green.svg' }
   ])
+  const [myProducts, setMyProducts] = useState([
+    {
+      name: 'Profissão Blogueiras',
+      image: '/products/pinkcard.svg',
+      stars: 5,
+      comission: '52,37',
+      text:
+        'Aprenda o Passo a Passo do Mais Novo Método “Profissão Blogueira” e Ganhe de Mil a 30 mil Reais por Publi Posts! Ative uma Visão Empreendedora totalmente única e inovadora e aprenda como se diferenciar das demais para ser uma verdadeira influencer de sucesso!'
+    },
+    {
+      name: 'Evolve TV',
+      image: '/products/greencard.svg',
+      stars: 5,
+      comission: '85,90',
+      text:
+        'TRANSFORME SUA TV EM UMA SMART TV DE VERDADE! Infinitas Possibilidades na sua TV! Streaming de Mais de 100.000 Filmes, Episódios de TV e Canais para Assistir Onde e Quando quiser!'
+    },
+    {
+      name: 'Meu Sono Brasil',
+      image: 'products/bluecard.svg',
+      stars: 5,
+      comission: '52,37',
+      text:
+        'Ative o Alívio Terapêutico Enquanto Você Dorme e Elimine Dores nas Costas e no Pescoço! Em apenas 7 dias, sem gastar com Medicamentos e Tratamentos Caros, com uma Tecnologia Ultra Avançada que Alinha a Sua Coluna em Qualquer Posição Que Você Dorme.'
+    },
+    {
+      name: 'Pré-Gest',
+      image: '/products/yellowcard.svg',
+      stars: 5,
+      comission: '25,90',
+      text:
+        'A Regeneração que o seu sistema reprodutor precisa para tornar sua vida mais completa! e não te faltar mais nada para realizar o seu sonho no próximo dia das mães.s'
+    }
+  ])
+  const [allProducts, setAllProducts] = useState([
+    {
+      name: 'Profissão Blogueiras',
+      image: '/products/pinkcard.svg',
+      stars: 5,
+      comission: '52,37',
+      text:
+        'Aprenda o Passo a Passo do Mais Novo Método “Profissão Blogueira” e Ganhe de Mil a 30 mil Reais por Publi Posts! Ative uma Visão Empreendedora totalmente única e inovadora e aprenda como se diferenciar das demais para ser uma verdadeira influencer de sucesso!'
+    },
+    {
+      name: 'Evolve TV',
+      image: '/products/greencard.svg',
+      stars: 5,
+      comission: '85,90',
+      text:
+        'TRANSFORME SUA TV EM UMA SMART TV DE VERDADE! Infinitas Possibilidades na sua TV! Streaming de Mais de 100.000 Filmes, Episódios de TV e Canais para Assistir Onde e Quando quiser!'
+    },
+    {
+      name: 'Meu Sono Brasil',
+      image: 'products/bluecard.svg',
+      stars: 5,
+      comission: '52,37',
+      text:
+        'Ative o Alívio Terapêutico Enquanto Você Dorme e Elimine Dores nas Costas e no Pescoço! Em apenas 7 dias, sem gastar com Medicamentos e Tratamentos Caros, com uma Tecnologia Ultra Avançada que Alinha a Sua Coluna em Qualquer Posição Que Você Dorme.'
+    },
+    {
+      name: 'Pré-Gest',
+      image: '/products/yellowcard.svg',
+      stars: 5,
+      comission: '25,90',
+      text:
+        'A Regeneração que o seu sistema reprodutor precisa para tornar sua vida mais completa! e não te faltar mais nada para realizar o seu sonho no próximo dia das mães.s'
+    }
+  ])
+
+  // terminar o state all products, adicionar mais produto, adaptar a navegacao, atualizar o componente
 
   // functions
   useEffect(() => {
@@ -966,9 +1039,30 @@ const Home: React.FC<MenuProps> = () => {
         )}
 
         {state.menu === 'produtos' && (
-          <section>
-            <h1>Produtos</h1>
-          </section>
+          <Products>
+            <h1>
+              <img src="/productslogo.svg" alt="Logo produtos" />
+              Produtos
+            </h1>
+            <TopMenu menus={['Meus Produtos', 'Loja de produtos']} />
+            {state.submenu === 'Meus Produtos' && (
+              <div className="my-products">
+                {myProducts.map(product => {
+                  return (
+                    <ProductsList
+                      name={product.name}
+                      stars={product.stars}
+                      image={product.image}
+                      comission={product.comission}
+                      description={product.text}
+                      textbutton="Ver Produto"
+                      qr
+                    />
+                  )
+                })}
+              </div>
+            )}
+          </Products>
         )}
 
         {state.menu === 'treinamentos' && (

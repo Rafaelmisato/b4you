@@ -1,4 +1,4 @@
-export default function starsNumber(stars: Number, plan: string) {
+export default function starsNumber(stars: Number | string, plan: string) {
   if (plan === 'gold') {
     if (stars === 1) {
       return (

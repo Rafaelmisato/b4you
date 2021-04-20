@@ -2,6 +2,7 @@ import { createContext, useState, Dispatch, SetStateAction } from 'react'
 
 type MenuType = {
   menu: string
+  submenu?: string
 }
 
 type PropsMenuContext = {

@@ -242,7 +242,11 @@ export const Green = styled.span`
 `
 
 export const PerfilContainer = styled.section`
-  padding: 60px 0;
+  padding: 60px 0 30px;
+
+  @media (max-width: 767px) {
+    padding-bottom: 20px;
+  }
 `
 
 export const InfoContainer = styled.div`
@@ -489,17 +493,14 @@ export const InfoContainerRight = styled.div`
   .exp {
     flex-direction: column;
 
-    @media (max-width: 1180px) {
-      height: 326px;
+    @media (max-width: 1107px) {
+      height: 288px;
     }
     @media (max-width: 1023px) {
       height: 270px;
     }
     @media (max-width: 837px) {
       height: 290px;
-    }
-    @media (max-width: 799px) {
-      height: 326px;
     }
     @media (max-width: 767px) {
       height: 270px;
@@ -549,9 +550,17 @@ export const RankingContainer = styled.div`
 
   .ranking-wraper {
     justify-content: space-between;
+    align-items: center;
   }
 
   .ranking-products {
+    @media (max-width: 767px) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
     div + div {
       margin-left: 0;
     }
@@ -559,6 +568,13 @@ export const RankingContainer = styled.div`
 
   .ranking-product-single {
     margin-bottom: 20px;
+
+    @media (max-width: 767px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+    }
 
     img {
       width: 60px;
@@ -575,13 +591,36 @@ export const RankingContainer = styled.div`
         font-weight: 600;
         font-size: 16px;
         color: #fff;
+
+        @media (max-width: 767px) {
+          text-align: center;
+        }
       }
 
       span:nth-of-type(2) {
         font-weight: 600;
         font-size: 14px;
         color: #fff;
+
+        @media (max-width: 767px) {
+          text-align: center;
+        }
       }
     }
+  }
+`
+
+export const TeamContainer = styled.div`
+  background: #0a152d;
+  border-radius: 16px;
+  padding: 30px;
+  margin-top: 30px;
+
+  > h3 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #ffffff;
+    margin-bottom: 45px;
   }
 `

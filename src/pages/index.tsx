@@ -18,6 +18,7 @@ import InputRange from '../components/InputRange'
 import InputSocial from '../components/InputSocial'
 import CheckBox from '../components/CheckBox'
 import RankingChart from '../components/RankingChart'
+import Team from '../components/Team'
 
 import {
   Container,
@@ -32,7 +33,8 @@ import {
   InfoContainer,
   InfoContainerLeft,
   InfoContainerRight,
-  RankingContainer
+  RankingContainer,
+  TeamContainer
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -240,7 +242,37 @@ const Home: React.FC<MenuProps> = () => {
       stars: 3
     }
   ])
+  const [rankingCharts, setRankingCharts] = useState({
+    data: [
+      {
+        name: 'Meu Sono Brasil',
+        data: [2, 5, 7, 6, 5]
+      },
+      {
+        name: 'Profissão Blogueira',
+        data: [3, 2, 0, 7, 1]
+      },
+      {
+        name: 'Beauty Candy',
+        data: [1, 2, 2, 1, 2]
+      }
+    ],
+    text: ['text', 'text', 'text', 'text', 'text']
+  })
+  const [team, setTeam] = useState([
+    { name: 'Leonardo Ferreira', img: '/team/leonardo.svg' },
+    { name: 'Gabriel Ramalho', img: '/team/gabriel.svg' },
+    { name: 'Marcon Willian', img: '/team/marcon.svg' },
+    { name: 'yellow', img: '/team/yellow.svg' },
+    { name: 'red', img: '/team/red.svg' },
+    { name: 'green', img: '/team/green.svg' },
+    { name: 'green', img: '/team/green.svg' },
+    { name: 'green', img: '/team/green.svg' },
+    { name: 'green', img: '/team/green.svg' },
+    { name: 'green', img: '/team/green.svg' },
+  ])
 
+  // functions
   useEffect(() => {
     const totalSelling = sellingData.reduce(
       (totalSelling, sellingData) => totalSelling + sellingData,
@@ -682,15 +714,16 @@ const Home: React.FC<MenuProps> = () => {
                   </div>
 
                   <RankingChart
-                    sellCount={totalSelling}
-                    period={periodSelling}
-                    data={sellingData}
-                    date={sellingDate}
-                    haveSelling={haveSelling}
-                    sellerInfo={sellersInfo}
+                    data={rankingCharts.data}
+                    info={rankingCharts.text}
                   />
                 </Flex>
               </RankingContainer>
+              <TeamContainer>
+                <h3>Meu Time</h3>
+
+                <Team user={userInformation.image} team={team} />
+              </TeamContainer>
             </section>
 
             {photoModal && (

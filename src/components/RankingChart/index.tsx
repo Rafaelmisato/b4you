@@ -1,62 +1,40 @@
-import { Container, Header, Sellings, Table } from './styles'
+import { Container } from './styles'
 
 import dynamic from 'next/dynamic'
 
 interface ChartProps {
-  sellCount: string | number
-  period: string
-  data: number[]
-  date: string[][]
-  haveSelling: boolean
-  sellerInfo: { name: string; value: string; date: string }[]
+  data: { name: string; data: number[] }[]
+  info: string[]
 }
 
 /**
  *
  * @param param0
  * Need to pass the params
- * - sellCount: number of sellings (string | number)
- * - data: array total sellings (7 datas) ex: [1,2,3,4,5,6,7]
- * - date: array dates of the sellings (7datas) ex:
- *[
- *  ['11/04'],
- *  ['12/04'],
- *  ['13/04'],
- *  ['14/04'],
- *  ['15/04'],
- *  ['16/04'],
- *  ['17/04']
- *]
- * - haveSelling: have or not have sellings boolean
- * - if have sellings:
- * - sellerInfo?: An array with obejcts Ex:
- * [{name: "name", value: "300,29", date: "15/04"}]
+ * - data: array with objects ex:
+ * [
+ *  {
+ *  name: example 1,
+ *  data: [1, 2, 3, 4, 5]
+ *  },
+ *  {
+ *  name: example 2,
+ *  data: [1, 2, 3, 4, 5]
+ *  },
+ * ]
+ * - info: array with informations on chart Ex:
+ *  [
+ *    text, text, text, text, text
+ *  ]
  */
 
-const SellingChart: React.FC<ChartProps> = ({
-  data,
-  date,
-  haveSelling,
-  sellerInfo
-}) => {
+const SellingChart: React.FC<ChartProps> = ({ data, info }) => {
   const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false
   })
 
-  // copiar os states do grafico ja pronto, pra ser rapido, fazer tudo estatico pra terminar logo
+  const series = data
 
-  const series = [
-    {
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
-    },
-    {
-      name: 'series2',
-      data: [11, 32, 45, 32, 34, 52, 41]
-    }
-  ]
-
-  // ajustar chart e responsivo
   const options = {
     chart: {
       toolbar: {
@@ -70,11 +48,11 @@ const SellingChart: React.FC<ChartProps> = ({
       show: false
     },
     xaxis: {
-      categories: date,
+      categories: info,
       labels: {
         style: {
-          colors: '#fff',
-          fontSize: '14px',
+          colors: '#a3a3a3',
+          fontSize: '10px',
           fontWeight: 500
         }
       }
@@ -82,16 +60,12 @@ const SellingChart: React.FC<ChartProps> = ({
     yaxis: {
       labels: {
         style: {
-          colors: '#fff',
-          fontSize: '14px',
+          colors: '#a3a3a3',
+          fontSize: '10px',
           fontWeight: 500
         }
       }
     },
-    // grid: {
-    //   show: true,
-    //   borderColor: '#244282'
-    // },
     grid: {
       show: true,
       borderColor: '#fff',
@@ -124,11 +98,13 @@ const SellingChart: React.FC<ChartProps> = ({
     },
     stroke: {
       show: true,
-      curve: 'smooth',
-      lineCap: 'butt',
-      colors: undefined,
-      width: 2,
+      width: 0,
       dashArray: 0
+    },
+    fill: {
+      opacity: 0.7,
+      type: 'solid',
+      colors: ['#FFDC14', '#0075FF', '#EF4FF0']
     }
   }
 
@@ -138,7 +114,7 @@ const SellingChart: React.FC<ChartProps> = ({
         options={options}
         series={series}
         type="area"
-        height={250}
+        height={320}
       />
     </Container>
   )

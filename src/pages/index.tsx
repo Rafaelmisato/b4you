@@ -21,6 +21,7 @@ import RankingChart from '../components/RankingChart'
 import Team from '../components/Team'
 import TopMenu from '../components/TopMenu'
 import ProductsList from '../components/ProductsList'
+import VideoContainer from '../components/VideoContainer'
 
 import {
   Container,
@@ -37,7 +38,8 @@ import {
   InfoContainerRight,
   RankingContainer,
   TeamContainer,
-  Products
+  Products,
+  Training
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -342,7 +344,7 @@ const Home: React.FC<MenuProps> = () => {
         'A Regeneração que o seu sistema reprodutor precisa para tornar sua vida mais completa! e não te faltar mais nada para realizar o seu sonho no próximo dia das mães.s'
     },
     {
-      name: 'Meu Sono Brasil',
+      name: 'Meu Sono Brasil 2',
       image: '/products/redcard.svg',
       stars: 5,
       comission: '52,37',
@@ -356,6 +358,133 @@ const Home: React.FC<MenuProps> = () => {
       comission: '35,48',
       text:
         'O MELHOR COLÁGENO EM GOMAS DO MUNDO! Ative o Efeito Botulínico Natural e Conquiste uma Pele Jovem. Beauty Candy possui a maior concentração de colágeno do mercado e Com apenas 3 Gomas por Dia Melhore o Aspecto das Rugas, Flacidez em até 31% e Tenha Cabelos e Unhas 3x Mais Fortes!'
+    }
+  ])
+  const [videos, setVideos] = useState([
+    {
+      title: 'Últimas Postagens',
+      videos: [
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/orange.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/red.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        }
+      ]
+    },
+    {
+      title: 'Treinamento B4YOU Starter',
+      videos: [
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/blue.svg'
+        }
+      ]
+    },
+    {
+      title: 'Lives',
+      videos: [
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/orange.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/orange.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/orange.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/orange.svg'
+        }
+      ]
+    },
+    {
+      title: 'Lançamento dos produtos',
+      videos: [
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/purple.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/purple.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/purple.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/purple.svg'
+        }
+      ]
+    },
+    {
+      title: 'Programa Venda Sem Investir',
+      videos: [
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/green.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/green.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/green.svg'
+        },
+        {
+          video:
+            'https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4',
+          poster: '/videosPlaceholder/green.svg'
+        }
+      ]
     }
   ])
 
@@ -1122,15 +1251,45 @@ const Home: React.FC<MenuProps> = () => {
               </div>
             )}
             {state.submenu === 'Loja de Produtos' && state.product && (
-              <div className="product-single">Produtos</div>
+              <div className="product-single">
+                {allProducts.map((product, index) => {
+                  if (product.name === state.product) {
+                    return (
+                      <div key={index}>
+                        <img
+                          src={product.image}
+                          alt="Image do produto"
+                          className="product-image-single"
+                        />
+                        <h3>{product.name}</h3>
+                        <div>{starsNumber(product.stars, 'gold')}</div>
+                        <p>{product.text}</p>
+                        <h3>Comissões</h3>
+                        <span>
+                          <img src="/cash.svg" />
+                          RS {product.comission} por venda
+                        </span>
+                        <button>Afiliar ao Produto</button>
+                      </div>
+                    )
+                  }
+                })}
+              </div>
             )}
           </Products>
         )}
 
         {state.menu === 'treinamentos' && (
-          <section>
-            <h1>treinamentos</h1>
-          </section>
+          <Training>
+            <h1>
+              <img src="/treinamento.svg" /> Treinamento
+            </h1>
+            <Video
+              src="https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-the-water-of-a-lake-seen-up-18312-large.mp4"
+              poster="/videoThumb.svg"
+            />
+            <VideoContainer videos={videos} />
+          </Training>
         )}
 
         {state.menu === 'ranking' && (

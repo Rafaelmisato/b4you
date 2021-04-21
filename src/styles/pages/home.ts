@@ -657,6 +657,16 @@ export const Products = styled.section`
 
   > .product-single {
     padding-top: 70px;
+    animation: zoom 0.3s linear;
+
+    @keyframes zoom {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
 
     > div {
       display: flex;
@@ -709,6 +719,25 @@ export const Products = styled.section`
           width: 270px;
         }
       }
+    }
+  }
+`
+
+export const Training = styled.section`
+  h1 {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+    color: #ffffff;
+    margin: 40px 0 50px;
+
+    img {
+      margin-right: 15px;
+    }
+
+    > video {
+      height: 500px;
     }
   }
 `

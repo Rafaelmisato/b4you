@@ -210,7 +210,7 @@ const SideBar: React.FC<SideBarProps> = ({
         <button
           className={state.menu === 'produtos' ? 'active' : ''}
           onClick={() => {
-            setMenuState({ menu: 'produtos' })
+            setMenuState({ menu: 'produtos', submenu: 'Meus Produtos' })
             setOpenMenu(false)
           }}
         >

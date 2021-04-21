@@ -654,4 +654,61 @@ export const Products = styled.section`
       }
     }
   }
+
+  > .product-single {
+    padding-top: 70px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+
+      > .product-image-single {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      > h3 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+        margin: 30px 0;
+      }
+
+      > p {
+        margin: 25px 0 40px;
+        font-weight: 500;
+        font-size: 18px;
+        color: #ffffff;
+      }
+
+      > span {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 18px;
+        color: #ffffff;
+
+        > img {
+          margin-right: 15px;
+        }
+      }
+
+      > button {
+        width: 290px;
+        height: 43px;
+        background: #37f0d3;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        margin-top: 60px;
+
+        @media (max-width: 374px) {
+          width: 270px;
+        }
+      }
+    }
+  }
 `

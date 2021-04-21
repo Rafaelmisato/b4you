@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 interface Props {
   buttonCopy: boolean
+  clicked: boolean
 }
 
 export const Container = styled.div<Props>`
@@ -109,12 +110,25 @@ export const Container = styled.div<Props>`
 
       button:nth-of-type(1) {
         width: 146px;
+        width: ${({ clicked }) => (clicked ? '220px' : '146px')};
         margin-right: 10px;
+        transition: all 0.3s linear;
+
+        > img {
+          margin-left: 20px;
+        }
       }
-      button:nth-of-type(2) {
+      .qrbutton {
         width: 40px;
         background: ${({ buttonCopy }) => buttonCopy && '#ef4ff0'};
         transition: all 0.3s linear;
+      }
+      .productinfo {
+        background: transparent;
+        color: #37f0d3;
+        text-decoration: underline;
+        width: 80px;
+        font-size: 13px;
       }
     }
   }

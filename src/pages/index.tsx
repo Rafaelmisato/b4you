@@ -340,10 +340,24 @@ const Home: React.FC<MenuProps> = () => {
       comission: '25,90',
       text:
         'A Regeneração que o seu sistema reprodutor precisa para tornar sua vida mais completa! e não te faltar mais nada para realizar o seu sonho no próximo dia das mães.s'
+    },
+    {
+      name: 'Meu Sono Brasil',
+      image: '/products/redcard.svg',
+      stars: 5,
+      comission: '52,37',
+      text:
+        'Aprenda o Passo a Passo do Mais Novo Método “Profissão Blogueira” e Ganhe de Mil a 30 mil Reais por Publi Posts! Ative uma Visão Empreendedora totalmente única e inovadora e aprenda como se diferenciar das demais para ser uma verdadeira influencer de sucesso!'
+    },
+    {
+      name: 'Beauty Candy',
+      image: '/products/pinkcard.svg',
+      stars: 5,
+      comission: '35,48',
+      text:
+        'O MELHOR COLÁGENO EM GOMAS DO MUNDO! Ative o Efeito Botulínico Natural e Conquiste uma Pele Jovem. Beauty Candy possui a maior concentração de colágeno do mercado e Com apenas 3 Gomas por Dia Melhore o Aspecto das Rugas, Flacidez em até 31% e Tenha Cabelos e Unhas 3x Mais Fortes!'
     }
   ])
-
-  // terminar o state all products, adicionar mais produto, adaptar a navegacao, atualizar o componente
 
   // functions
   useEffect(() => {
@@ -1044,12 +1058,13 @@ const Home: React.FC<MenuProps> = () => {
               <img src="/productslogo.svg" alt="Logo produtos" />
               Produtos
             </h1>
-            <TopMenu menus={['Meus Produtos', 'Loja de produtos']} />
-            {state.submenu === 'Meus Produtos' && (
+            <TopMenu menus={['Meus Produtos', 'Loja de Produtos']} />
+            {state.submenu === 'Meus Produtos' && state.product === undefined && (
               <div className="my-products">
-                {myProducts.map(product => {
+                {myProducts.map((product, index) => {
                   return (
                     <ProductsList
+                      key={index}
                       name={product.name}
                       stars={product.stars}
                       image={product.image}
@@ -1061,6 +1076,53 @@ const Home: React.FC<MenuProps> = () => {
                   )
                 })}
               </div>
+            )}
+            {state.submenu === 'Loja de Produtos' &&
+              state.product === undefined && (
+                <div className="my-products">
+                  {allProducts.map((product, index) => {
+                    return (
+                      <ProductsList
+                        key={index}
+                        name={product.name}
+                        stars={product.stars}
+                        image={product.image}
+                        comission={product.comission}
+                        description={product.text}
+                        textbutton="Me Afiliar"
+                      />
+                    )
+                  })}
+                </div>
+              )}
+            {state.submenu === 'Meus Produtos' && state.product && (
+              <div className="product-single">
+                {allProducts.map((product, index) => {
+                  if (product.name === state.product) {
+                    return (
+                      <div key={index}>
+                        <img
+                          src={product.image}
+                          alt="Image do produto"
+                          className="product-image-single"
+                        />
+                        <h3>{product.name}</h3>
+                        <div>{starsNumber(product.stars, 'gold')}</div>
+                        <p>{product.text}</p>
+                        <h3>Comissões</h3>
+                        <span>
+                          <img src="/cash.svg" />
+                          RS {product.comission} por venda
+                        </span>
+                        <button>Afiliar ao Produto</button>
+                      </div>
+                    )
+                  }
+                })}
+              </div>
+            )}
+            {state.submenu === 'Loja de Produtos' && state.product && (
+              <div className="product-single">Produtos</div>
             )}
           </Products>
         )}

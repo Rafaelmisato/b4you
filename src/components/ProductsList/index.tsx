@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import { Container } from './styles'
 
 import starsNumbers from '../../utils/starsNumber'
+import MenuContext from '../../context/MenuContext'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -12,7 +13,7 @@ interface Props {
   stars: string | number
   comission: string
   description: string
-  qr: boolean
+  qr?: boolean
   textbutton: string
 }
 
@@ -25,7 +26,10 @@ const ProductsList: React.FC<Props> = ({
   textbutton,
   qr
 }) => {
+  const { state, setState: setMenuState } = useContext(MenuContext)
+
   const [buttonCopy, setButtonCopy] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
   useEffect(() => {
     if (buttonCopy === true) {
@@ -33,10 +37,36 @@ const ProductsList: React.FC<Props> = ({
         setButtonCopy(false)
       }, 3000)
     }
+    if (clicked === true) {
+      setTimeout(function () {
+        setClicked(false)
+      }, 3000)
+    }
   }, [buttonCopy])
 
+  const handleClick = () => {
+    if (textbutton === 'Me Afiliar') {
+      setClicked(true)
+    }
+    if (textbutton !== 'Me Afiliar') {
+      console.log('Ir para pagina de produto')
+      setMenuState({ menu: state.menu, submenu: state.submenu, product: name })
+    }
+  }
+
+  const handleProduct = () => {
+    console.log('Ir para pagina de produto')
+    setMenuState({ menu: state.menu, submenu: state.submenu, product: name })
+  }
+
+  const handleClickCopy = () => {
+    if (qr) {
+      setButtonCopy(true)
+    }
+  }
+
   return (
-    <Container buttonCopy={buttonCopy}>
+    <Container buttonCopy={buttonCopy} clicked={clicked}>
       <div>
         <div className="header">
           <img src={image} alt="Product image" className="product-image" />
@@ -49,10 +79,19 @@ const ProductsList: React.FC<Props> = ({
         <p>{description}</p>
 
         <div className="buttonsContainer">
-          <button>{textbutton}</button>
+          <button onClick={handleClick}>
+            {textbutton !== 'Me Afiliar' && textbutton}
+            {textbutton === 'Me Afiliar' && clicked === false && 'Me Afiliar'}
+            {textbutton === 'Me Afiliar' &&
+              clicked === true &&
+              'Avaliação Concluída'}
+            {textbutton === 'Me Afiliar' && clicked === true && (
+              <img src="/correct.svg" />
+            )}
+          </button>
           {qr ? (
             <CopyToClipboard text={name}>
-              <button onClick={() => setButtonCopy(true)}>
+              <button onClick={handleClickCopy} className="qrbutton">
                 <svg
                   width="18"
                   height="18"
@@ -72,7 +111,9 @@ const ProductsList: React.FC<Props> = ({
               </button>
             </CopyToClipboard>
           ) : (
-            <button>outro botao</button>
+            <button className="productinfo" onClick={handleProduct}>
+              Ver Produto
+            </button>
           )}
         </div>
       </div>

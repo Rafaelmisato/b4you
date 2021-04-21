@@ -341,26 +341,6 @@ export const InfoContainerLeft = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
-
-    span {
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 10px;
-      line-height: 15px;
-      text-transform: uppercase;
-      width: 60px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    img {
-      height: 22px;
-      width: 22px;
-      margin: 0;
-      margin-left: 10px;
-    }
   }
 
   > span:nth-of-type(1) {
@@ -738,6 +718,18 @@ export const Training = styled.section`
 
     > video {
       height: 500px;
+    }
+  }
+`
+
+export const Ranking = styled.section`
+  h1 {
+    margin: 50px 0 60px;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 35px;
     }
   }
 `

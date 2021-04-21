@@ -22,6 +22,8 @@ import Team from '../components/Team'
 import TopMenu from '../components/TopMenu'
 import ProductsList from '../components/ProductsList'
 import VideoContainer from '../components/VideoContainer'
+import TopMenuRanking from '../components/TopMenuRanking'
+import RankingTotalContainer from '../components/RankingTotalContainer'
 
 import {
   Container,
@@ -39,7 +41,8 @@ import {
   RankingContainer,
   TeamContainer,
   Products,
-  Training
+  Training,
+  Ranking
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -487,6 +490,266 @@ const Home: React.FC<MenuProps> = () => {
       ]
     }
   ])
+  const [ranking, setRanking] = useState([
+    {
+      name: 'Semanal',
+      members: [
+        {
+          name: 'Marcon Willian',
+          photo: '/ranking/marcon.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 85
+        },
+        {
+          name: 'Gabriel Ramalho',
+          photo: '/ranking/gabriel.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 77
+        },
+        {
+          name: 'Angela Viana',
+          photo: '/ranking/angela.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 69
+        },
+        {
+          name: 'Laís Thainá',
+          photo: '/ranking/lais.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 63
+        },
+        {
+          name: 'Leonardo Ferreira',
+          photo: '/ranking/leonardo.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 55
+        },
+        {
+          name: 'Guilherme Maximiano',
+          photo: '/ranking/guilherme.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 42
+        },
+        {
+          name: 'Lucas Paulino',
+          photo: '/ranking/lucas.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 38
+        },
+        {
+          name: 'Guilherme Sandoval',
+          photo: '/ranking/guilhermesandoval.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 32
+        },
+        {
+          name: 'Raphael Bastos',
+          photo: '/ranking/raphael.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 29
+        }
+      ]
+    },
+    {
+      name: 'Mensal',
+      members: [
+        {
+          name: 'Marcon Willian',
+          photo: '/ranking/marcon.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 85
+        },
+        {
+          name: 'Gabriel Ramalho',
+          photo: '/ranking/gabriel.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 77
+        },
+        {
+          name: 'Angela Viana',
+          photo: '/ranking/angela.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 69
+        },
+        {
+          name: 'Laís Thainá',
+          photo: '/ranking/lais.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 63
+        },
+        {
+          name: 'Leonardo Ferreira',
+          photo: '/ranking/leonardo.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 55
+        },
+        {
+          name: 'Guilherme Maximiano',
+          photo: '/ranking/guilherme.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 42
+        },
+        {
+          name: 'Lucas Paulino',
+          photo: '/ranking/lucas.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 38
+        },
+        {
+          name: 'Guilherme Sandoval',
+          photo: '/ranking/guilhermesandoval.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 32
+        },
+        {
+          name: 'Raphael Bastos',
+          photo: '/ranking/raphael.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 29
+        }
+      ]
+    },
+    {
+      name: 'Times',
+      members: [
+        {
+          name: 'Marcon Willian',
+          photo: '/ranking/marcon.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 85
+        },
+        {
+          name: 'Gabriel Ramalho',
+          photo: '/ranking/gabriel.svg',
+          badge: 'lion',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 77
+        },
+        {
+          name: 'Angela Viana',
+          photo: '/ranking/angela.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 69
+        },
+        {
+          name: 'Laís Thainá',
+          photo: '/ranking/lais.svg',
+          badge: 'eagle',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 63
+        },
+        {
+          name: 'Leonardo Ferreira',
+          photo: '/ranking/leonardo.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 55
+        },
+        {
+          name: 'Guilherme Maximiano',
+          photo: '/ranking/guilherme.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 42
+        },
+        {
+          name: 'Lucas Paulino',
+          photo: '/ranking/lucas.svg',
+          badge: 'wolf',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 38
+        },
+        {
+          name: 'Guilherme Sandoval',
+          photo: '/ranking/guilhermesandoval.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 32
+        },
+        {
+          name: 'Raphael Bastos',
+          photo: '/ranking/raphael.svg',
+          badge: 'rhino',
+          info1: 'BSB',
+          country: 'BR',
+          state: 'Brasília',
+          sales: 29
+        }
+      ]
+    }
+  ])
 
   // functions
   useEffect(() => {
@@ -804,21 +1067,7 @@ const Home: React.FC<MenuProps> = () => {
 
                     <h3>{userInformation.name}</h3>
 
-                    <div>
-                      {toLowercase(userInformation.badges) === 'lion' && (
-                        <Gold>{userInformation.badges}</Gold>
-                      )}
-                      {toLowercase(userInformation.badges) === 'wolf' && (
-                        <Black>{userInformation.badges}</Black>
-                      )}
-                      {toLowercase(userInformation.badges) === 'rhino' && (
-                        <Blue>{userInformation.badges}</Blue>
-                      )}
-                      {toLowercase(userInformation.badges) === 'eagle' && (
-                        <Rubi>{userInformation.badges}</Rubi>
-                      )}
-                      {badges(userInformation.badges)}
-                    </div>
+                    <div>{badges(userInformation.badges)}</div>
 
                     <span>
                       {userInformation.occupation} | {userInformation.company}
@@ -1293,9 +1542,33 @@ const Home: React.FC<MenuProps> = () => {
         )}
 
         {state.menu === 'ranking' && (
-          <section>
-            <h1>ranking</h1>
-          </section>
+          <Ranking>
+            <h1>
+              <img src="/ranking.svg" /> Ranking
+            </h1>
+            <TopMenuRanking menus={['Semanal', 'Mensal', 'Times']} />
+            {state.submenu === 'Semanal' && (
+              <RankingTotalContainer
+                ranking={ranking}
+                userInfo={userInformation}
+                team={team}
+              />
+            )}
+            {state.submenu === 'Mensal' && (
+              <RankingTotalContainer
+                ranking={ranking}
+                userInfo={userInformation}
+                team={team}
+              />
+            )}
+            {state.submenu === 'Times' && (
+              <RankingTotalContainer
+                ranking={ranking}
+                userInfo={userInformation}
+                team={team}
+              />
+            )}
+          </Ranking>
         )}
       </Container>
     </Layout>

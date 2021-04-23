@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({ onChange, name, width, ...rest }) => {
         ref={inputRef}
         onChange={handleChange}
         defaultValue={defaultValue}
-        value={checked}
+        value={checked as boolean}
         {...rest}
       />
       <div>

@@ -88,7 +88,7 @@ const Home: React.FC<MenuProps> = () => {
   const [aboutModal, setAboutModal] = useState(false)
   const [experienceModal, setExperienceModal] = useState(false)
 
-  // api data states
+  // data states
   const [userInformation, setUserInformation] = useState({
     name: 'Pedro Kassaoka',
     plan: 'gold',

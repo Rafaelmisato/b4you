@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface Props {
-  checked: boolean
+  checked: any
 }
 
 export const Container = styled.label<Props>`

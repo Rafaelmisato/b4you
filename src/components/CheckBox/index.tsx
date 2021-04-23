@@ -2,8 +2,10 @@ import React, { InputHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { useField } from '@unform/core'
 import { Container } from './styles'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
   name: string
+  onChange: () => void
+  width?: string
 }
 
 /**

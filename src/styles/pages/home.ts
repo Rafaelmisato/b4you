@@ -733,3 +733,29 @@ export const Ranking = styled.section`
     }
   }
 `
+
+export const Admin = styled.section`
+  > .admin-title {
+    display: flex;
+    align-items: center;
+    margin: 50px 0;
+
+    > img {
+      margin-right: 20px;
+    }
+
+    > div {
+      > h1 {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ffffff;
+      }
+
+      > span {
+        font-weight: 500;
+        font-size: 15px;
+        color: #ffffff;
+      }
+    }
+  }
+`

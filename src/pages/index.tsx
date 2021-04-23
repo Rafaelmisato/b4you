@@ -24,6 +24,8 @@ import ProductsList from '../components/ProductsList'
 import VideoContainer from '../components/VideoContainer'
 import TopMenuRanking from '../components/TopMenuRanking'
 import RankingTotalContainer from '../components/RankingTotalContainer'
+import TopMenuAdmin from '../components/TopMenuAdmin'
+import Receipt from '../components/Receipt'
 
 import {
   Container,
@@ -42,7 +44,8 @@ import {
   TeamContainer,
   Products,
   Training,
-  Ranking
+  Ranking,
+  Admin
 } from '../styles/pages/home'
 
 import toLowercase from '../utils/toLowerCase'
@@ -750,7 +753,55 @@ const Home: React.FC<MenuProps> = () => {
       ]
     }
   ])
-
+  const [admin, setAdmin] = useState([
+    {
+      availablebalance: '538,75',
+      availablePercentage: '45%',
+      antecipation: '1.036,36',
+      antecipationPercentage: '45%',
+      availableData: [
+        { name: 'Hoje', value: ['59,62'] },
+        { name: 'Semana', value: ['113,01'] },
+        {
+          name: 'Mês',
+          value: [
+            { name: 'Janeiro', value: '50,00' },
+            { name: 'Fevereiro', value: '100,00' },
+            { name: 'Março', value: '351,29' }
+          ]
+        },
+        {
+          name: 'Ano',
+          value: [
+            { name: '2019', value: '500,00' },
+            { name: '2020', value: '800,00' },
+            { name: '2021', value: '1575,11' }
+          ]
+        },
+        { name: 'Total', value: ['1575,11'] }
+      ],
+      accounts: [
+        {
+          number: '055',
+          name: 'Banco do Brasil S/A',
+          ag: '0001',
+          cc: '1596325-63'
+        },
+        {
+          number: '055',
+          name: 'Banco do Brasil S/A',
+          ag: '0001',
+          cc: '1596325-63'
+        },
+        {
+          number: '055',
+          name: 'Banco do Brasil S/A',
+          ag: '0001',
+          cc: '1596325-63'
+        }
+      ]
+    }
+  ])
   // functions
   useEffect(() => {
     const totalSelling = sellingData.reduce(
@@ -1569,6 +1620,22 @@ const Home: React.FC<MenuProps> = () => {
               />
             )}
           </Ranking>
+        )}
+
+        {state.menu === 'admin' && (
+          <Admin>
+            <div className="admin-title">
+              <img src="/adminlogo.svg" />
+              <div>
+                <h1>Administrativo</h1>
+                <span>Acompanhe suas comissões.</span>
+              </div>
+            </div>
+
+            <TopMenuAdmin menus={['Receita', 'Pagamentos']} />
+
+            {state.submenu === 'Receita' && <Receipt data={admin} />}
+          </Admin>
         )}
       </Container>
     </Layout>

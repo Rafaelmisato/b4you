@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 import MenuContext from '../../context/MenuContext'
 
@@ -38,6 +38,17 @@ const SideBar: React.FC<SideBarProps> = ({
   const { state, setState: setMenuState } = useContext(MenuContext)
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    setWidth(window.innerWidth)
+  }, [])
+
+  const handleClickMobile = () => {
+    if (width !== 0 && width <= 767) {
+      setMenuState({ menu: 'admin', submenu: 'Receita' })
+    }
+  }
 
   return (
     <>
@@ -65,7 +76,7 @@ const SideBar: React.FC<SideBarProps> = ({
           </button>
           <button
             onClick={() => {
-              setMenuState({ menu: 'perfil' })
+              setMenuState({ menu: 'admin', submenu: 'Receita' })
               setOpenMenu(false)
             }}
           >
@@ -165,7 +176,7 @@ const SideBar: React.FC<SideBarProps> = ({
           alt="b4you logo"
           className="logo-mobile"
         />
-        <div>
+        <div onClick={handleClickMobile}>
           <img src={profileImage} alt="Imagem de perfil" />
           <div>
             <span>{name}</span>
@@ -178,7 +189,13 @@ const SideBar: React.FC<SideBarProps> = ({
             </div>
           </div>
         </div>
-        <button className="balance">
+        <button
+          className="balance"
+          onClick={() => {
+            setMenuState({ menu: 'admin', submenu: 'Receita' })
+            setOpenMenu(false)
+          }}
+        >
           <p>Saldo diponível</p>
           <p>
             R$ {balance}
@@ -238,5 +255,3 @@ const SideBar: React.FC<SideBarProps> = ({
 }
 
 export default SideBar
-
-// 768 px ta belezinha - só falta ajustar o responsivo pra celular

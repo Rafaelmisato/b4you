@@ -52,6 +52,9 @@ export const Container = styled.div<Props>`
     border-radius: 16px;
     cursor: default;
     margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @media (max-width: 767px) {
       width: 50px;

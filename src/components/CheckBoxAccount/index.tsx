@@ -44,7 +44,7 @@ const CheckBoxAcc: React.FC<InputProps> = ({
         ref={inputRef}
         onChange={handleChange}
         defaultValue={defaultValue}
-        value={checked as boolean}
+        // value={checked as boolean}
         {...rest}
       />
       <div>{text}</div>

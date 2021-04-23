@@ -4,7 +4,7 @@ import { Container } from './styles'
 
 interface InputProps {
   name: string
-  onChange: () => void
+  onChange?: () => void
   width?: string
 }
 
@@ -41,7 +41,7 @@ const Input: React.FC<InputProps> = ({ onChange, name, width, ...rest }) => {
         ref={inputRef}
         onChange={handleChange}
         defaultValue={defaultValue}
-        value={checked}
+        // value={'checked'}
         {...rest}
       />
       <div>

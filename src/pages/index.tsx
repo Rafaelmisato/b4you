@@ -26,6 +26,7 @@ import TopMenuRanking from '../components/TopMenuRanking'
 import RankingTotalContainer from '../components/RankingTotalContainer'
 import TopMenuAdmin from '../components/TopMenuAdmin'
 import Receipt from '../components/Receipt'
+import Payments from '../components/Payments'
 
 import {
   Container,
@@ -798,6 +799,110 @@ const Home: React.FC<MenuProps> = () => {
           name: 'Banco do Brasil S/A',
           ag: '0001',
           cc: '1596325-63'
+        }
+      ]
+    }
+  ])
+  const [adminPayment, setAdminPayment] = useState([
+    {
+      scheduled: '00,00',
+      total: '2.295,42',
+      withdrawData: [
+        {
+          data: '19/04/2021',
+          value: '59,62',
+          info: [
+            {
+              name: 'Marcon Willian',
+              product: 'B4youStarter',
+              data: '05/04/2021',
+              value: '197,90'
+            },
+            {
+              name: 'Angela Viana',
+              product: 'Profissão Blogueiras',
+              data: '08/04/2021',
+              value: '25,39'
+            },
+            {
+              name: 'Leonardo Ferreira',
+              product: 'Meu Sono Brasil',
+              data: '11/04/2021',
+              value: '117,56'
+            }
+          ]
+        },
+        {
+          data: '19/03/2021',
+          value: '113,01',
+          info: [
+            {
+              name: 'Marcon Willian',
+              product: 'B4youStarter',
+              data: '05/04/2021',
+              value: '197,90'
+            },
+            {
+              name: 'Angela Viana',
+              product: 'Profissão Blogueiras',
+              data: '08/04/2021',
+              value: '25,39'
+            },
+            {
+              name: 'Leonardo Ferreira',
+              product: 'Meu Sono Brasil',
+              data: '11/04/2021',
+              value: '117,56'
+            }
+          ]
+        },
+        {
+          data: '10/02/2021',
+          value: '25,36',
+          info: [
+            {
+              name: 'Marcon Willian',
+              product: 'B4youStarter',
+              data: '05/04/2021',
+              value: '197,90'
+            },
+            {
+              name: 'Angela Viana',
+              product: 'Profissão Blogueiras',
+              data: '08/04/2021',
+              value: '25,39'
+            },
+            {
+              name: 'Leonardo Ferreira',
+              product: 'Meu Sono Brasil',
+              data: '11/04/2021',
+              value: '117,56'
+            }
+          ]
+        },
+        {
+          data: '05/01/2021',
+          value: '125,39',
+          info: [
+            {
+              name: 'Marcon Willian',
+              product: 'B4youStarter',
+              data: '05/04/2021',
+              value: '197,90'
+            },
+            {
+              name: 'Angela Viana',
+              product: 'Profissão Blogueiras',
+              data: '08/04/2021',
+              value: '25,39'
+            },
+            {
+              name: 'Leonardo Ferreira',
+              product: 'Meu Sono Brasil',
+              data: '11/04/2021',
+              value: '117,56'
+            }
+          ]
         }
       ]
     }
@@ -1635,6 +1740,7 @@ const Home: React.FC<MenuProps> = () => {
             <TopMenuAdmin menus={['Receita', 'Pagamentos']} />
 
             {state.submenu === 'Receita' && <Receipt data={admin} />}
+            {state.submenu === 'Pagamentos' && <Payments data={adminPayment} />}
           </Admin>
         )}
       </Container>

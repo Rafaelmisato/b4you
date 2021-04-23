@@ -13,6 +13,7 @@ export const Container = styled.div<Props>`
     font-size: 15px;
     color: #ffffff;
     margin-bottom: 45px;
+    text-align: center;
   }
 
   > .buttonContainerReceipt {

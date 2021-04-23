@@ -1,7 +1,5 @@
-import { useState, useContext, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { Container } from './styles'
-
-import MenuContext from '../../context/MenuContext'
 
 import CheckBoxAcc from '../CheckBoxAccount'
 import CheckBoxAntecipation from '../CheckBoxAntecipation'
@@ -14,8 +12,6 @@ interface Props {
 }
 
 const Receipts: React.FC<Props> = ({ data }) => {
-  const { state, setState: setMenuState } = useContext(MenuContext)
-
   const formRef = useRef<FormHandles>(null)
   const formRefAnte = useRef<FormHandles>(null)
 
@@ -45,8 +41,8 @@ const Receipts: React.FC<Props> = ({ data }) => {
   }
 
   return (
-    <Container available={available} antecipation={antecipacion}>
-      {state.submenu === 'Receita' && (
+    <>
+      <Container available={available} antecipation={antecipacion}>
         <>
           <h2>
             Esta página mostra sua receita total ao longo de toda sua trajetória
@@ -228,11 +224,9 @@ const Receipts: React.FC<Props> = ({ data }) => {
             </div>
           )}
         </>
-      )}
-    </Container>
+      </Container>
+    </>
   )
 }
-
-// ajeitar 2 cards respons
 
 export default Receipts

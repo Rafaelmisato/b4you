@@ -1,9 +1,10 @@
 import { createContext, useState, Dispatch, SetStateAction } from 'react'
 
 type MenuType = {
-  menu: string
+  menu?: string
   submenu?: string
   product?: string
+  loading?: boolean
 }
 
 type PropsMenuContext = {

@@ -92,7 +92,7 @@ const Receipts: React.FC<Props> = ({ data }) => {
             data.map(single => {
               return single.availableData.map((info, index) => {
                 return (
-                  <div className="infodata" key={index}>
+                  <div className="infodata" key={`${index}infooo`}>
                     <span>{info.name}:</span>
 
                     {info.value.length > 1 && (

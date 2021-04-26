@@ -3434,6 +3434,11 @@ timers-browserify@2.0.12, timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
+tiny-skeleton-loader-react@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/tiny-skeleton-loader-react/-/tiny-skeleton-loader-react-1.1.4.tgz#b3e4dea5d3398f6882e9eaafeccb584cecc9df12"
+  integrity sha512-FsgPOAP0XuTNHWxFMkpe0m9f61SwlJJmXaSim9/jR29fDHr87WsaNK3duNqT5juN9d48hZVV8QOCFy9/VLNafg==
+
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"

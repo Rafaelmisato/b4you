@@ -27,6 +27,7 @@ import RankingTotalContainer from '../components/RankingTotalContainer'
 import TopMenuAdmin from '../components/TopMenuAdmin'
 import Receipt from '../components/Receipt'
 import Payments from '../components/Payments'
+import ProductsListSkeleton from '../components/ProductListSkeleton'
 
 import {
   Container,
@@ -66,6 +67,26 @@ interface MenuProps {
 
 const Home: React.FC<MenuProps> = () => {
   const { state, setState: setMenuState } = useContext(MenuContext)
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (state.submenu === 'Meus Produtos') {
+      setLoading(true)
+
+      setTimeout(function () {
+        setLoading(false)
+      }, 3000)
+    }
+
+    if (state.submenu === 'Loja de Produtos') {
+      setLoading(true)
+
+      setTimeout(function () {
+        setLoading(false)
+      }, 3000)
+    }
+  }, [state.submenu])
 
   const formPerfilRef = useRef<FormHandles>(null)
   const zoomRotateRef = useRef<FormHandles>(null)
@@ -1595,26 +1616,17 @@ const Home: React.FC<MenuProps> = () => {
             <TopMenu menus={['Meus Produtos', 'Loja de Produtos']} />
             {state.submenu === 'Meus Produtos' && state.product === undefined && (
               <div className="my-products">
-                {myProducts.map((product, index) => {
-                  return (
-                    <ProductsList
-                      key={index}
-                      name={product.name}
-                      stars={product.stars}
-                      image={product.image}
-                      comission={product.comission}
-                      description={product.text}
-                      textbutton="Ver Produto"
-                      qr
-                    />
-                  )
-                })}
-              </div>
-            )}
-            {state.submenu === 'Loja de Produtos' &&
-              state.product === undefined && (
-                <div className="my-products">
-                  {allProducts.map((product, index) => {
+                {/* <ProductsListSkeleton /> */}
+
+                {loading ? (
+                  <>
+                    <ProductsListSkeleton />
+                    <ProductsListSkeleton />
+                    <ProductsListSkeleton />
+                    <ProductsListSkeleton />
+                  </>
+                ) : (
+                  myProducts.map((product, index) => {
                     return (
                       <ProductsList
                         key={index}
@@ -1623,10 +1635,40 @@ const Home: React.FC<MenuProps> = () => {
                         image={product.image}
                         comission={product.comission}
                         description={product.text}
-                        textbutton="Me Afiliar"
+                        textbutton="Ver Produto"
+                        qr
                       />
                     )
-                  })}
+                  })
+                )}
+              </div>
+            )}
+            {state.submenu === 'Loja de Produtos' &&
+              state.product === undefined && (
+                <div className="my-products">
+                  {loading ? (
+                    <>
+                      <ProductsListSkeleton />
+                      <ProductsListSkeleton />
+                      <ProductsListSkeleton />
+                      <ProductsListSkeleton />
+                    </>
+                  ) : (
+                    allProducts.map((product, index) => {
+                      return (
+                        <ProductsList
+                          key={index}
+                          name={product.name}
+                          stars={product.stars}
+                          image={product.image}
+                          comission={product.comission}
+                          description={product.text}
+                          textbutton="Ver Produto"
+                          qr
+                        />
+                      )
+                    })
+                  )}
                 </div>
               )}
             {state.submenu === 'Meus Produtos' && state.product && (

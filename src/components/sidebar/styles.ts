@@ -402,7 +402,7 @@ export const BottomMenu = styled.div`
   width: 100%;
   height: 85px;
   background: green;
-  z-index: 1;
+  z-index: 9999;
   background: #0a152d;
   -webkit-box-shadow: 0px 0px 5px -1px #000;
   box-shadow: 0px 0px 5px -1px #000;

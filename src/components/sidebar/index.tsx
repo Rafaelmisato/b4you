@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 
+import { useRouter } from 'next/router'
+
 import MenuContext from '../../context/MenuContext'
 
 import {
@@ -37,6 +39,8 @@ const SideBar: React.FC<SideBarProps> = ({
 }) => {
   const { state, setState: setMenuState } = useContext(MenuContext)
 
+  const router = useRouter()
+
   const [openMenu, setOpenMenu] = useState(false)
   const [width, setWidth] = useState(0)
 
@@ -47,6 +51,7 @@ const SideBar: React.FC<SideBarProps> = ({
   const handleClickMobile = () => {
     if (width !== 0 && width <= 767) {
       setMenuState({ menu: 'admin', submenu: 'Receita' })
+      router.push('/receita')
     }
   }
 
@@ -69,6 +74,7 @@ const SideBar: React.FC<SideBarProps> = ({
             onClick={() => {
               setMenuState({ menu: 'perfil' })
               setOpenMenu(false)
+              router.push('/perfil')
             }}
           >
             Ver Perfil
@@ -77,6 +83,7 @@ const SideBar: React.FC<SideBarProps> = ({
           <button
             onClick={() => {
               setMenuState({ menu: 'admin', submenu: 'Receita' })
+              router.push('/receita')
               setOpenMenu(false)
             }}
           >
@@ -93,6 +100,7 @@ const SideBar: React.FC<SideBarProps> = ({
             className={state.menu === 'home' ? 'active' : ''}
             onClick={() => {
               setMenuState({ menu: 'home' })
+              router.push('/')
               setOpenMenu(false)
             }}
           >
@@ -105,6 +113,7 @@ const SideBar: React.FC<SideBarProps> = ({
             className={state.menu === 'produtos' ? 'active' : ''}
             onClick={() => {
               setMenuState({ menu: 'produtos', submenu: 'Meus Produtos' })
+              router.push('/produtos')
               setOpenMenu(false)
             }}
           >
@@ -118,6 +127,7 @@ const SideBar: React.FC<SideBarProps> = ({
             className={state.menu === 'treinamentos' ? 'active' : ''}
             onClick={() => {
               setMenuState({ menu: 'treinamentos' })
+              router.push('/treinamentos')
               setOpenMenu(false)
             }}
           >
@@ -130,6 +140,7 @@ const SideBar: React.FC<SideBarProps> = ({
             className={state.menu === 'ranking' ? 'active' : ''}
             onClick={() => {
               setMenuState({ menu: 'ranking', submenu: 'Semanal' })
+              router.push('/ranking')
               setOpenMenu(false)
             }}
           >
@@ -143,6 +154,7 @@ const SideBar: React.FC<SideBarProps> = ({
             className={`${state.menu === 'perfil' ? 'active ' : ''} perfil`}
             onClick={() => {
               setMenuState({ menu: 'perfil' })
+              router.push('/perfil')
               setOpenMenu(false)
             }}
           >
@@ -193,6 +205,7 @@ const SideBar: React.FC<SideBarProps> = ({
           className="balance"
           onClick={() => {
             setMenuState({ menu: 'admin', submenu: 'Receita' })
+            router.push('/receita')
             setOpenMenu(false)
           }}
         >

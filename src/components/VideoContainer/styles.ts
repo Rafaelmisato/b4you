@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   .arrow {
     position: absolute;
-    right: 0;
+    right: 8px;
     top: 50%;
     transform: translate(50%, -50%);
     background: #ffffff;

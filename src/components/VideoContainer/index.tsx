@@ -36,7 +36,10 @@ const VideoContainer: React.FC<Props> = ({ videos }) => {
                 <div className="videos-wraper">
                   {video.videos.map((singlevideo, index) => {
                     return (
-                      <div key={`${index}videosingle`} className="video-single">
+                      <div
+                        key={`${index}videosingleee`}
+                        className="video-single"
+                      >
                         <video
                           src={singlevideo.video}
                           onClick={e => handleClick(e)}

@@ -120,4 +120,6 @@ const SellingChart: React.FC<ChartProps> = ({ data, info }) => {
   )
 }
 
+// test
+
 export default SellingChart

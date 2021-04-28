@@ -359,6 +359,3 @@ const Home: React.FC<MenuProps> = () => {
 }
 
 export default Home
-
-// fazer review antes de entregar
-// tirar console.log

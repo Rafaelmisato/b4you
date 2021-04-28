@@ -280,7 +280,6 @@ const Home: React.FC<MenuProps> = () => {
     const image64 = await base64(image)
 
     setChangeImg(image64)
-    console.log(image64)
   }
 
   const handleOnlyNumber = useCallback(evt => {
@@ -293,8 +292,6 @@ const Home: React.FC<MenuProps> = () => {
       if (theEvent.preventDefault) theEvent.preventDefault()
     }
   }, [])
-
-  console.log(state)
 
   return (
     <Layout

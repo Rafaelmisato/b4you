@@ -49,13 +49,11 @@ const ProductsList: React.FC<Props> = ({
       setClicked(true)
     }
     if (textbutton !== 'Me Afiliar') {
-      console.log('Ir para pagina de produto')
       setMenuState({ menu: state.menu, submenu: state.submenu, product: name })
     }
   }
 
   const handleProduct = () => {
-    console.log('Ir para pagina de produto')
     setMenuState({ menu: state.menu, submenu: state.submenu, product: name })
   }
 
